@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="Css\ManagePage.css">
+        <script>
+        </script>
+    </head>
+    <title>报修单管理</title>
+    <body>
+        <div class="topBar">
+            <label>Welcome</label>
+            <label th:text="${super.getSuper_username()}"></label>
+            <label th:text="${super.getSuper_company()}"></label>
+        </div>
+        <div class="slideBar">
+            <h2>报修单管理</h2>
+            <div class="tag">
+                <label>报修单</label>
+            </div>
+            <div class="tag" onclick="">
+                <label>部门设备</label>
+            </div>
+        </div>
+        <div class="centerBar">
+            <table class="bodyForm">
+                <thead>
+                    <tr>
+                        <th>DeviceName</th>
+                        <th>Status</th>
+                        <th>Act</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr order_id=1>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>
+                            <button>Pass</button>
+                            <button>Denied</button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+</html>

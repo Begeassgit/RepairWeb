@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Css\Login.css">
+        <script>
+           function adminloginSubmit(){
+               var admin_username=document.forms['form1']['admin_username'].value;
+               var admin_password=document.forms['form1']['admin_password'].value;
+
+               if(admin_password.length<6){
+                   alert("密码至少为6位");
+                   return false;
+               }
+               return true;
+           }
+        </script>
+    </head>
+    <title>
+        后台管理系统
+    </title>
+    <body background="Image\h1.jpg">
+        <div class="box">
+            <h2>登录</h2>
+            <form name="form1" action="http://localhost:8080/checkLoginAdmin" method="POST" onsubmit="return adminloginSubmit();">
+                <div class="inputBox">
+                    <input type="text" name="admin_username" required="">
+                    <label>用户名</label>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="admin_password" required="">
+                    <label>密码</label>
+                </div>
+                <input type="submit" value="登录">
+            
+            </form>
+        </div>
+    </body>
+</html>

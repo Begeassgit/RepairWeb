@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Css\Login.css">
+        <script>
+           function loginSubmit(){
+               var user_userName=document.forms['form1']['user_username'].value;
+               var user_password=document.forms['form1']['user_password'].value;
+
+               if(user_password.length<6){
+                   alert("密码至少为6位");
+                   return false;
+               }
+               return true;
+           }
+        </script>
+    </head>
+    <title>
+        报修系统
+    </title>
+    <body background="Image\h1.jpg">
+        <div class="box">
+            <h2>登录</h2>
+            <form name="form1" action="http://localhost:8080/checkLogin" method="POST" onsubmit="return loginSubmit();">
+                <div class="inputBox">
+                    <input type="text" name="user_username" required="">
+                    <label>用户名</label>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="user_password" required="">
+                    <label>密码</label>
+                </div>
+                <input type="submit" value="登录">
+                
+                <a href="../RegisterSuper">注册</a>
+            </form>
+        </div>
+    </body>
+</html>

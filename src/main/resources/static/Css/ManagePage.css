@@ -1,0 +1,69 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-size: cover;
+}
+.topBar
+{
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    background: rgb(5, 99, 161);
+    text-align: right;
+}
+.topBar label
+{
+    font-style: normal;
+    color: azure;
+    padding: 10px;
+}
+.slideBar{
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    width: 10%;
+    background: rgb(5, 99, 161);
+    text-align: center;
+}
+.slideBar h2{
+    font-style: normal;
+    color: azure;
+}
+.tag{
+    margin: 5px 5px 5px 5px;
+    padding:24px;
+    background: rgba(231, 231, 231, 0.301);
+}
+.tag label
+{
+    color: azure;
+}
+.centerBar{
+    position: absolute;
+    left: 11%;
+    top:8%;
+}
+.centerBar li{
+    margin: 5px;
+    padding: 5px;
+    background-color: antiquewhite;
+}
+.bodyForm{
+    margin: 5px;
+    font-size: large;
+}
+.bodyForm thead{
+    display: table-header-group;
+    background-color: bisque;
+    border-color: bisque;
+}
+.bodyForm tbody{
+    display: table-row-group;
+    background-color: lightslategray;
+
+}
+.bodyForm tbody td button{
+    border-radius: 5px;
+
+}

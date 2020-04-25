@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Css\Login.css">
+        <script>
+           function superloginSubmit(){
+               var super_username=document.forms['form1']['super_username'].value;
+               var super_password=document.forms['form1']['super_password'].value;
+
+               if(super_password.length<6){
+                   alert("密码至少为6位");
+                   return false;
+               }
+
+               return true;
+           }
+        </script>
+    </head>
+    <title>
+        报修系统-部门主管登录
+    </title>
+    <body background="Image\h1.jpg">
+        <div class="box">
+            <h2>登录</h2>
+            <form name="form1" action="http://localhost:8080/checkSupervisorLogin" method="POST" onsubmit="return superloginSubmit();">
+                <div class="inputBox">
+                    <input type="text" name="super_username" required="">
+                    <label>用户名</label>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="super_password" required="">
+                    <label>密码</label>
+                </div>
+                <input type="submit" value="登录">
+                
+                <a href="../RegisterSuper">注册</a>
+            </form>
+        </div>
+    </body>
+</html>
