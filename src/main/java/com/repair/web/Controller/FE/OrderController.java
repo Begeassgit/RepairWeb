@@ -5,6 +5,7 @@ import com.repair.web.Service.FE.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -17,7 +18,10 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/myOrder",method = RequestMethod.POST)
-    public List<Order> getMyOrder(String order_company){
-        return orderService.getOrder(order_company);
+    public ModelAndView getMyOrder(String order_company){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("OrderInfo");
+        modelAndView.addObject("List",orderService.getOrder(order_company));
+        return modelAndView;
     }
 }
