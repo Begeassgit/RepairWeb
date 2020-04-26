@@ -17,4 +17,8 @@ public class DeviceService {
     public List<Device>getDeviceInfo(String device_id){
         return deviceDao.getDeviceInfo(device_id);
     }
+
+    public List<Device>getCompanyDevices(String device_Company){
+        return deviceDao.findDeviceInfo(device_Company);
+    }
 }

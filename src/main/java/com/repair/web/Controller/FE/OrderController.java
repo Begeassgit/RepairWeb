@@ -24,4 +24,12 @@ public class OrderController {
         modelAndView.addObject("List",orderService.getOrder(order_company));
         return modelAndView;
     }
+
+    @RequestMapping(value = "/addOrderSubmit",method = RequestMethod.POST)
+    public ModelAndView addOrder(Order order){
+        ModelAndView modelAndView=new ModelAndView();
+        orderService.addOrder(order);
+        modelAndView.setViewName("");
+        return modelAndView;
+    }
 }

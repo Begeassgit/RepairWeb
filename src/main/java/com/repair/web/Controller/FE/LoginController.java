@@ -6,7 +6,6 @@ import com.repair.web.Service.FE.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -22,11 +21,11 @@ public class LoginController {
 
     @RequestMapping(value = "/Login",method = RequestMethod.GET)
     public String loginPage(){
-        return "Login.html";
+        return "Login";
     }
     @RequestMapping(value = "/SupervisorLogin",method = RequestMethod.GET)
     public String supervisorLoginPage(){
-        return "LoginSuper.html";
+        return "LoginSuper";
     }
 
     @RequestMapping(value = "/checkLogin",method = RequestMethod.POST)

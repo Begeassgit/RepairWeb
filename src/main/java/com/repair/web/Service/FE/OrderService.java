@@ -17,4 +17,8 @@ public class OrderService {
     public List<Order> getOrder(String order_company){
         return orderDao.getOrder(order_company);
     }
+
+    public boolean addOrder(Order order){
+        return orderDao.addOrder(order)>=1;
+    }
 }

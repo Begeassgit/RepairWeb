@@ -31,4 +31,12 @@ public class LoginService {
         }
         return supervisorDao.checkSuperLogin(username,password);
     }
+
+    public Supervisor SuperInfo(String username,String password){
+        if(supervisorDao.checkSuperLogin(username,password)==null){
+            return null;
+        }
+        return supervisorDao.checkSuperLogin(username,password);
+    }
+
 }
