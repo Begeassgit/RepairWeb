@@ -6,6 +6,7 @@ import com.repair.web.Entity.Supervisor;
 import com.repair.web.Entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,6 +45,16 @@ public class LoginService {
             return null;
         }
         return supervisorDao.superInfos(company);
+    }
+
+    public List<Supervisor> SuperInfoList(String company){
+        if(supervisorDao.superInfos(company)==null){
+            return null;
+        }
+        List<Supervisor> list=new ArrayList<>();
+        list.add(0,supervisorDao.superInfos(company));
+
+        return list;
     }
 
 }

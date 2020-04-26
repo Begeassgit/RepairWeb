@@ -86,7 +86,7 @@
                         </li>
                         <!-- ============================================================== -->
                         <!-- Profile -->
-                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->a
                     </ul>
                 </div>
             </nav>
@@ -104,10 +104,10 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <form id="form1" method="post" action="http://127.0.0.1:8080/myOrder">
-                            <input type="hidden" name="order_company" th:value="${List.get(0).getOrder_company()}">
+                            <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
                         </form>
                         <form id="form2" method="post" action="http://127.0.0.1:8080/ComInfos">
-                            <input type="hidden" name="super_company" th:value="${List.get(0).getOrder_company()}">
+                            <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit()" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
