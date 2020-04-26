@@ -32,7 +32,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <p class="loader__label"></p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -48,16 +48,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="SuperHome.html">
-                        <!-- Logo icon --><b>
-                            <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span>
-                            <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                        </span>
-                    </a>
+                    <a class="navbar-brand" href="SuperHome.html"></a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -86,7 +77,7 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-dark" href="#"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link waves-effect waves-dark" href="#"></a>
                         </li>
                     </ul>
                 </div>
@@ -104,9 +95,13 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="SuperHome.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="ComInfo.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="OrderInfo.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/myOrder"><input type="hidden" name="order_company" th:value="${super.getSuper_company()}"></form>
+                        <li> <a class="waves-effect waves-dark" href="http://ComInfo.html" aria-expanded="false">
+                            <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/SuperHome.html" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                            <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -132,7 +127,7 @@
                         <h3 class="text-themecolor">公司信息</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -148,12 +143,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">Hanna Gover</h4>
-                                    <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
-                                    </div>
+                                    <h4 class="card-title m-t-10" th:text="${super.getSuper_company()}"></h4>
+                                    <h6 class="card-subtitle" th:text="${super.getSuper_department()}"></h6>
                                 </center>
                             </div>
                         </div>
@@ -165,50 +156,15 @@
                             <div class="card-body">
                                 <form class="form-horizontal form-material">
                                     <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
+                                        <label class="col-md-12">用户名</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
+                                            <p class="form-control form-control-line" th:text="${super.getSuper_username()}"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <label class="col-md-12">Phone</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Phone No</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Message</label>
-                                        <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-12">Select Country</label>
-                                        <div class="col-sm-12">
-                                            <select class="form-control form-control-line">
-                                                <option>London</option>
-                                                <option>India</option>
-                                                <option>Usa</option>
-                                                <option>Canada</option>
-                                                <option>Thailand</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
+                                            <p class="form-control form-control-line"th:text="${super.getSuper_phone()}"></p>
                                         </div>
                                     </div>
                                 </form>
