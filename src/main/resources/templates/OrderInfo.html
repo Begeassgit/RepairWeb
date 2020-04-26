@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="Css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,7 +48,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="">
                         <!-- Logo icon --><b>
                             <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                         </b>
@@ -79,7 +79,9 @@
                         <!-- ============================================================== -->
                         <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                                <label>
+                                    <input type="text" class="form-control" placeholder="Search & enter">
+                                </label> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
                         </li>
                         <!-- ============================================================== -->
@@ -104,9 +106,13 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="../templates/SuperHome.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="../templates/ComInfo.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="OrderInfo.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/myOrder"><input type="hidden" name="order_company" th:value="${List.get(0).getOrder_company()}"></form>
+                        <li> <a class="waves-effect waves-dark" href="http://" aria-expanded="false">
+                            <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/SuperHome.html" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                            <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -163,42 +169,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Deshmukh</td>
-                                                <td>Prohaska</td>
-                                                <td>@Genelia</td>
+                                            <tr th:each="list:${List}">
+                                                <td th:text="${list.order_id}"></td>
+                                                <td th:text="${list.order_deviceType}"></td>
+                                                <td th:text="${list.order_deviceName}"></td>
+                                                <td th:text="${list.order_info}"></td>
+                                                <td th:text="${list.order_address}"></td>
+                                                <td th:text="${list.order_time}"></td>
+                                                <td th:text="${list.order_status}"></td>
+                                                <td th:text="${list.order_company}"></td>
+                                                <td>
+                                                    <input type="submit" value="通过">
+                                                    <input type="submit" value="退回">
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Deshmukh</td>
-                                                <td>Gaylord</td>
-                                                <td>@Ritesh</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sanghani</td>
-                                                <td>Gusikowski</td>
-                                                <td>@Govinda</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Roshan</td>
-                                                <td>Rogahn</td>
-                                                <td>@Hritik</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Joshi</td>
-                                                <td>Hickle</td>
-                                                <td>@Maruti</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Nigam</td>
-                                                <td>Eichmann</td>
-                                                <td>@Sonu</td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -229,13 +214,13 @@
     <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="Js/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
-    <script src="js/waves.js"></script>
+    <script src="Js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
+    <script src="Js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
+    <script src="Js/custom.min.js"></script>
 </body>
 
 </html>
