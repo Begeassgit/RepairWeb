@@ -110,7 +110,8 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/myOrder"><input type="hidden" name="order_company" th:value="${super.getSuper_company()}"></form>
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/myOrder">
+                           <!-- <input type="hidden" name="order_company" th:value="${super.getSuper_company()}"></form>-->
                         <li> <a class="waves-effect waves-dark" href="http://ComInfo.html" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/SuperHome.html" aria-expanded="false">

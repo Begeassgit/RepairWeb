@@ -32,11 +32,18 @@ public class LoginService {
         return supervisorDao.checkSuperLogin(username,password);
     }
 
-    public Supervisor SuperInfo(String username,String password){
-        if(supervisorDao.checkSuperLogin(username,password)==null){
+    public Supervisor SuperInfo(String username,String company){
+        if(supervisorDao.superInfo(username,company)==null){
             return null;
         }
-        return supervisorDao.checkSuperLogin(username,password);
+        return supervisorDao.superInfo(username,company);
+    }
+
+    public Supervisor SuperInfos(String company){
+        if(supervisorDao.superInfos(company)==null){
+            return null;
+        }
+        return supervisorDao.superInfos(company);
     }
 
 }
