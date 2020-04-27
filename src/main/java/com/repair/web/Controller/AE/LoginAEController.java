@@ -14,7 +14,7 @@ public class LoginAEController {
 
     @RequestMapping(value = "/LoginAdmin",method = RequestMethod.GET)
     public String loginAdminPage(){
-        return "LoginAdmin.html";
+        return "LoginAdmin";
     }
 
     @RequestMapping(value = "/checkLoginAdmin",method = RequestMethod.POST)

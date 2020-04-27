@@ -3,6 +3,7 @@ package com.repair.web.Controller.FE;
 import com.repair.web.Service.FE.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -13,7 +14,7 @@ public class CompanyInfoController {
        this.loginService=loginService;
    }
 
-   @RequestMapping(value = "/ComInfo")
+   @RequestMapping(value = "/ComInfo",method = RequestMethod.POST)
     public ModelAndView ComInfoPage(String super_username,String super_company){
        ModelAndView modelAndView=new ModelAndView();
        modelAndView.setViewName("ComInfo");
@@ -21,7 +22,7 @@ public class CompanyInfoController {
        return modelAndView;
    }
 
-   @RequestMapping(value = "/ComInfos")
+   @RequestMapping(value = "/ComInfos",method = RequestMethod.POST)
    public ModelAndView ComInfoPages(String super_company){
       ModelAndView modelAndView=new ModelAndView();
       modelAndView.setViewName("ComInfo");

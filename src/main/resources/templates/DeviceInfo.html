@@ -20,11 +20,11 @@
     <!--c3 CSS -->
     <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="Css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
-    <link href="css/pages/dashboard.css" rel="stylesheet">
+    <link href="Css/pages/dashboard.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,16 +55,7 @@
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <!-- Logo icon --><b>
-                            <p th:text=""></p>
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                            <p th:text=""></p>
-                    </a>
-                </div>
+                <div class="navbar-header"></div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
@@ -79,22 +70,6 @@
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-dark" href="#"></a>
-                        </li>
-                    </ul>
                 </div>
             </nav>
         </header>
@@ -110,13 +85,21 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/myOrder">
-                           <!-- <input type="hidden" name="order_company" th:value="${super.getSuper_company()}"></form>-->
-                        <li> <a class="waves-effect waves-dark" href="http://ComInfo.html" aria-expanded="false">
-                            <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/SuperHome.html" aria-expanded="false">
-                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/ComInfos">
+                           <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
+                        </form>
+                        <form id="form2" method="post" action="http://127.0.0.1:8080/myOrder">
+                            <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
+                        </form>
+                        <form id="form3" method="post" action="http://127.0.0.1:8080/ComInfo">
+                            <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
+                        </form>
+
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                            <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
+                        <li> <a class="waves-effect waves-dark"  aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
                     </ul>
                 </nav>
@@ -218,41 +201,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td style="width:50px;"><span class="round"><img src="assets/images/users/1.jpg" alt="user" width="50"></span></td>
-                                                <td>
-                                                    <h6>Sunil Joshi</h6><small class="text-muted">Web Designer</small></td>
-                                                <td>Elite Admin</td>
-                                                <td>Low</td>
-                                            </tr>
-                                            <tr class="active">
-                                                <td><span class="round"><img src="assets/images/users/2.jpg" alt="user" width="50"></span></td>
-                                                <td>
-                                                    <h6>Andrew</h6><small class="text-muted">Project Manager</small></td>
-                                                <td>Real Homes</td>
-                                                <td>Medium</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="round round-success"><img src="assets/images/users/3.jpg" alt="user" width="50"></span></td>
-                                                <td>
-                                                    <h6>Bhavesh patel</h6><small class="text-muted">Developer</small></td>
-                                                <td>MedicalPro Theme</td>
-                                                <td>High</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="round round-primary"><img src="assets/images/users/4.jpg" alt="user" width="50"></span></td>
-                                                <td>
-                                                    <h6>Nirav Joshi</h6><small class="text-muted">Frontend Eng</small></td>
-                                                <td>Elite Admin</td>
-                                                <td>Low</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="round round-warning"><img src="assets/images/users/5.jpg" alt="user" width="50"></span></td>
-                                                <td>
-                                                    <h6>Micheal Doe</h6><small class="text-muted">Content Writer</small></td>
-                                                <td>Helping Hands</td>
-                                                <td>High</td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>

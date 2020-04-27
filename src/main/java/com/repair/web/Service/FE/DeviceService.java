@@ -19,6 +19,7 @@ public class DeviceService {
     }
 
     public List<Device>getCompanyDevices(String device_Company){
-        return deviceDao.findDeviceInfo(device_Company);
+        return deviceDao.ComDeviceInfo(device_Company);
     }
+
 }
