@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -34,51 +33,23 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">设备管理</p>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
     <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
                 <div class="navbar-header"></div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
                 <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto">
-                        <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
                 </div>
             </nav>
         </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
@@ -105,36 +76,18 @@
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
-            <!-- End Sidebar scroll-->
+
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
                         <h3 class="text-themecolor">控制板</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Sales overview chart -->
-                <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-lg-9 col-md-12">
                         <div class="card">
@@ -158,9 +111,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- visit charts-->
-                    <!-- ============================================================== -->
                     <div class="col-lg-3 col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -180,88 +130,43 @@
                         </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- Projects of the month -->
-                <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div>
-                                        <h4 class="card-title"><span class="lstick"></span>Projects of the Month</h4></div>
+                                        <h4 class="card-title"><span class="lstick"></span>当前设备数</h4></div>
                                 </div>
                                 <div class="table-responsive m-t-20">
                                     <table class="table vm no-th-brd no-wrap pro-of-month">
                                         <thead>
                                             <tr>
-                                                <th colspan="2">Assigned</th>
-                                                <th>Name</th>
-                                                <th>Priority</th>
+                                                <th>#</th>
+                                                <th>设备名</th>
+                                                <th>设备类型</th>
+                                                <th>品牌</th>
+                                                <th>设备购入日期</th>
+                                                <th>备注</th>
+                                                <th>所属公司</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            <tr th:each="list:${DeviceList}">
+                                                <td th:text="${list.getDevice_id()}"></td>
+                                                <td th:text="${list.getDevice_name()}"></td>
+                                                <td th:text="${list.getDevice_type()}"></td>
+                                                <td th:text="${list.getDevice_brand()}"></td>
+                                                <td th:text="${list.getDevice_time()}"></td>
+                                                <td th:text="${list.getDevice_info()}"></td>
+                                                <td th:text="${list.getDevice_company()}"></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- contact -->
-                    <div class="col-lg-6 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <h4 class="card-title"><span class="lstick"></span>My Contact</h4>
-                                </div>
-                                <div class="message-box contact-box">
-                                    <div class="message-widget contact-widget">
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@website.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Sonu Nigam</h5> <span class="mail-desc">pamela1987@gmail.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <span class="round">A</span> <span class="profile-status away pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Arijit Sinh</h5> <span class="mail-desc">cruise1298.fiplip@gmail.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">kat@gmail.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="assets/images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Andrew</h5> <span class="mail-desc">and@gmail.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="assets/images/users/6.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Jonathan Jones</h5> <span class="mail-desc">jj@gmail.com</span></div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- Blog and website visit -->
-                <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-lg-4 col-xlg-3">
                         <div class="card">
@@ -297,25 +202,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Page Content -->
-                <!-- ============================================================== -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+    </div>
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap popper Core JavaScript -->
     <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
@@ -338,6 +228,6 @@
     <script src="assets/plugins/c3-master/c3.min.js"></script>
     <!-- Chart JS -->
     <script src="Js/dashboard.js"></script>
-</body>
 
+</body>
 </html>

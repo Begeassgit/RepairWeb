@@ -17,60 +17,30 @@
     <link href="Css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 
 <body class="fix-header card-no-border fix-sidebar">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label"></p>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
     <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
                 <div class="navbar-header"></div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
                 <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto">
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
                 </div>
             </nav>
         </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
@@ -84,12 +54,12 @@
                             <input type="hidden" name="super_username" th:value="${super.getSuper_username()}">
                             <input type="hidden" name="super_company" th:value="${super.getSuper_company()}">
                         </form>
-                        <form id="form3" method="post" action="http://127.0.0.1:8080/myOrder">
-                            <input type="hidden" name="super_company" th:value="${super.getSuper_company()}">
+                        <form id="form3" method="post" action="http://127.0.0.1:8080/DeviceInfo">
+                            <input type="hidden" name="company" th:value="${super.getSuper_company()}">
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/SuperHome.html" aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
@@ -99,20 +69,8 @@
             </div>
             <!-- End Sidebar scroll-->
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
                         <h3 class="text-themecolor">公司信息</h3>
@@ -121,13 +79,6 @@
                         <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -164,25 +115,9 @@
                     </div>
                     <!-- Column -->
                 </div>
-                <!-- Row -->
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
