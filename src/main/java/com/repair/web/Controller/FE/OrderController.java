@@ -36,8 +36,40 @@ public class OrderController {
     @RequestMapping(value = "/addOrderSubmit",method = RequestMethod.POST)
     public ModelAndView addOrder(Order order){
         ModelAndView modelAndView=new ModelAndView();
-        orderService.addOrder(order);
-        modelAndView.setViewName("");
+        if(orderService.addOrder(order)){
+            modelAndView.setViewName("");
+            modelAndView.addObject("state",true);
+        }
+        else {
+            modelAndView.setViewName("");
+            modelAndView.addObject("state",false);
+        }
         return modelAndView;
     }
+
+    @RequestMapping(value = "/pOrder",method = RequestMethod.POST)
+    public ModelAndView pOrder(String order_id,String order_company){
+        orderService.passOrder(order_id);
+        Map<String,List>map=new HashMap<>();
+        map.put("List",orderService.getOrder(order_company));
+        map.put("company",loginService.SuperInfoList(order_company));
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("OrderInfo");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/dOrder",method = RequestMethod.POST)
+    public ModelAndView dOrder(String order_id,String order_company){
+        orderService.denyOrder(order_id);
+        Map<String,List>map=new HashMap<>();
+        map.put("List",orderService.getOrder(order_company));
+        map.put("company",loginService.SuperInfoList(order_company));
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("OrderInfo");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+
 }

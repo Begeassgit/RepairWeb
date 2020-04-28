@@ -21,4 +21,14 @@ public class OrderService {
     public boolean addOrder(Order order){
         return orderDao.addOrder(order)>=1;
     }
+
+    public boolean passOrder(String order_id){
+        String order_status="通过";
+        return orderDao.statusOrder(order_status,order_id)>=1;
+    }
+
+    public boolean denyOrder(String order_id){
+        String order_status="退回";
+        return orderDao.statusOrder(order_status,order_id)>=1;
+    }
 }
