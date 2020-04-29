@@ -113,17 +113,17 @@
                                                 <td th:text="${list.order_status}"></td>
                                                 <td th:text="${list.order_company}"></td>
                                                 <td>
-                                                    <form hidden id="form4" method="post" action="http://127.0.0.1:8080/pOrder">
+                                                    <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
                                                         <input type="hidden" name="order_id" th:value="${list.order_id}">
                                                         <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
                                                     </form>
-                                                    <input type="submit" value="通过" onclick="document.getElementById('form4').submit();">
+                                                    <input type="submit" value="通过" th:onclick="document.getElementById([[${list.order_id}]]).submit()">
 
-                                                    <form hidden id="form5" method="post" action="http://127.0.0.1:8080/dOrder">
+                                                    <form hidden th:id="${list.order_id+'s'}" method="post" action="http://127.0.0.1:8080/dOrder">
                                                         <input type="hidden" name="order_id" th:value="${list.order_id}">
                                                         <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
                                                     </form>
-                                                    <input type="submit" value="退回" onclick="document.getElementById('form5').submit();">
+                                                    <input type="submit" value="退回" th:onclick="document.getElementById([[${list.order_id+'s'}]]).submit()">
                                                 </td>
                                             </tr>
 
