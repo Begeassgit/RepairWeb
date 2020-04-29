@@ -37,7 +37,7 @@ public class LoginController {
             modelAndView.setViewName("Login");
         }
         else {
-            modelAndView.setViewName("");
+            modelAndView.setViewName("AddOrder");
             modelAndView.addObject("user",temp);
         }
         return modelAndView;
