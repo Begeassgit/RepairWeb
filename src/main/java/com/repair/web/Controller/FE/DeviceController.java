@@ -3,6 +3,7 @@ package com.repair.web.Controller.FE;
 import com.repair.web.Entity.Device;
 import com.repair.web.Service.FE.DeviceService;
 import com.repair.web.Service.FE.LoginService;
+import com.repair.web.Service.FE.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,10 +17,12 @@ import java.util.Map;
 public class DeviceController {
     public final DeviceService deviceService;
     public final LoginService loginService;
+    public final OrderService orderService;
 
-    public DeviceController(DeviceService deviceService,LoginService loginService){
+    public DeviceController(DeviceService deviceService,LoginService loginService,OrderService orderService){
         this.deviceService=deviceService;
         this.loginService=loginService;
+        this.orderService=orderService;
     }
 
     @RequestMapping(value = "/GetDevice",method = RequestMethod.POST)
@@ -32,6 +35,8 @@ public class DeviceController {
         Map<String,List>map=new HashMap<>();
         map.put("DeviceList",deviceService.getCompanyDevices(company));
         map.put("company",loginService.SuperInfoList(company));
+        map.put("total",deviceService.getDeviceSum(company));
+        map.put("status",orderService.getCountInfo(company));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("DeviceInfo");
         modelAndView.addAllObjects(map);

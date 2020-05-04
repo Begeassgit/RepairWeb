@@ -20,6 +20,7 @@ public interface DeviceDao {
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company = #{device_company})")
     List<Device> ComDeviceInfo(String device_company);
 
-    @Select("SELECT COUNT * FROM maintenance_db.device_t WHERE (device_company=#{device_company})")
-    int getDevice(String device_company);
+    @Select("SELECT COUNT(device_id) FROM maintenance_db.device_t WHERE (device_company=#{device_company})")
+    int getDeviceSum(String device_company);
+
 }

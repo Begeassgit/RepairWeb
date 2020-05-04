@@ -17,4 +17,10 @@ public interface OrderDao {
 
     @Update("UPDATE maintenance_db.order_t SET order_status=#{order_status} WHERE (order_id=#{order_id})")
     int statusOrder(String order_status,String order_id);
+
+    @Select("SELECT COUNT(order_id) FROM maintenance_db.order_t WHERE (order_company=#{order_company} AND order_status=#{order_status})")
+    int getRepairSum(String order_company,String order_status);
+
+    @Select("SELECT COUNT(order_id) FROM maintenance_db.order_t WHERE (order_company=#{order_company} AND order_status=#{order_status})")
+    int getSwitchSum(String order_company,String order_status);
 }

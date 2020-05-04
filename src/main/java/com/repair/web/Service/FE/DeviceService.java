@@ -4,6 +4,7 @@ import com.repair.web.Dao.DeviceDao;
 import com.repair.web.Entity.Device;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,14 @@ public class DeviceService {
         return deviceDao.getDeviceInfo(device_id);
     }
 
-    public List<Device>getCompanyDevices(String device_Company){
-        return deviceDao.ComDeviceInfo(device_Company);
+    public List<Device>getCompanyDevices(String device_company){
+        return deviceDao.ComDeviceInfo(device_company);
     }
 
+    public List<Integer>getDeviceSum(String device_company){
+        List<Integer> list=new ArrayList<>();
+        list.add(0,deviceDao.getDeviceSum(device_company));
+        System.out.printf("");
+        return list;
+    }
 }
