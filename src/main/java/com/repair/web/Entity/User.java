@@ -9,6 +9,7 @@ public class User {
     private String user_address;
     private String user_business;
     private String user_info;
+    private String user_department;
 
     public String getUser_company() {
         return user_company;

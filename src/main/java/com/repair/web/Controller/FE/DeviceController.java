@@ -31,12 +31,13 @@ public class DeviceController {
     }
 
     @RequestMapping(value = "/DeviceInfo",method = RequestMethod.POST)
-    public ModelAndView deviceInfo(String company){
+    public ModelAndView deviceInfo(String username,String company,String department){
         Map<String,List>map=new HashMap<>();
-        map.put("DeviceList",deviceService.getCompanyDevices(company));
-        map.put("company",loginService.SuperInfoList(company));
-        map.put("total",deviceService.getDeviceSum(company));
-        map.put("status",orderService.getCountInfo(company));
+        map.put("DeviceList",deviceService.getCompanyDevices(company,department));
+        map.put("ItemsList",deviceService.getCompanyItems(company,department));
+        map.put("company",loginService.SuperInfoList(username,company,department));
+        map.put("total",deviceService.getDeviceSum(company,department));
+        map.put("status",orderService.getCountInfo(company,department));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("DeviceInfo");
         modelAndView.addAllObjects(map);

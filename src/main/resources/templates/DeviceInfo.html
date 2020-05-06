@@ -55,19 +55,25 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/ComInfos">
-                           <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/ComInfo">
+                            <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="super_department" th:value="${company.get(0).getSuper_department}">
                         </form>
                         <form id="form2" method="post" action="http://127.0.0.1:8080/myOrder">
+                            <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
                             <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
                         </form>
-                        <form id="form3" method="post" action="http://127.0.0.1:8080/ComInfo">
-                            <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
+                        <form id="form3" method="post" action="http://127.0.0.1:8080/DeviceInfo">
+                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
                         </form>
 
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
-                        <li> <a class="waves-effect waves-dark"  aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
@@ -149,6 +155,7 @@
                                                 <th>设备类型</th>
                                                 <th>品牌</th>
                                                 <th>设备购入日期</th>
+                                                <th>部门</th>
                                                 <th>备注</th>
                                                 <th>所属公司</th>
                                             </tr>
@@ -160,6 +167,7 @@
                                                 <td th:text="${list.getDevice_type()}"></td>
                                                 <td th:text="${list.getDevice_brand()}"></td>
                                                 <td th:text="${list.getDevice_time()}"></td>
+                                                <td th:text="${list.getDevice_department()}"></td>
                                                 <td th:text="${list.getDevice_info()}"></td>
                                                 <td th:text="${list.getDevice_company()}"></td>
                                             </tr>
@@ -186,19 +194,21 @@
                                             <th>耗材类型</th>
                                             <th>品牌</th>
                                             <th>余量</th>
+                                            <th>部门</th>
                                             <th>备注</th>
                                             <th>所属公司</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="list:${DeviceList}">
-                                            <td th:text="${list.getDevice_id()}"></td>
-                                            <td th:text="${list.getDevice_name()}"></td>
-                                            <td th:text="${list.getDevice_type()}"></td>
-                                            <td th:text="${list.getDevice_brand()}"></td>
-                                            <td th:text="${list.getDevice_time()}"></td>
-                                            <td th:text="${list.getDevice_info()}"></td>
-                                            <td th:text="${list.getDevice_company()}"></td>
+                                        <tr th:each="listI:${ItemsList}">
+                                            <td th:text="${listI.getItems_id()}"></td>
+                                            <td th:text="${listI.getItems_name()}"></td>
+                                            <td th:text="${listI.getItems_type()}"></td>
+                                            <td th:text="${listI.getItems_brand()}"></td>
+                                            <td th:text="${listI.getItems_count()}"></td>
+                                            <td th:text="${listI.getItems_department()}"></td>
+                                            <td th:text="${listI.getItems_info()}"></td>
+                                            <td th:text="${listI.getItems_company()}"></td>
                                         </tr>
                                         </tbody>
                                     </table>

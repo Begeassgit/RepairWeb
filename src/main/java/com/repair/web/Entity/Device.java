@@ -11,6 +11,7 @@ public class Device {
     private Date device_time;
     private String device_info;
     private String device_company;
+    private String device_department;
 
     public String getDevice_company() {
         return device_company;
@@ -74,5 +75,13 @@ public class Device {
 
     public void setDevice_info(String device_info) {
         this.device_info = device_info;
+    }
+
+    public String getDevice_department() {
+        return device_department;
+    }
+
+    public void setDevice_department(String device_department) {
+        this.device_department = device_department;
     }
 }

@@ -4,6 +4,7 @@ public class Items {
     private int id;
     private String items_id;
     private String items_name;
+    private String items_type;
     private String items_brand;
     private String items_count;
     private String items_info;
@@ -72,5 +73,13 @@ public class Items {
 
     public void setItems_company(String items_company) {
         this.items_company = items_company;
+    }
+
+    public String getItems_type() {
+        return items_type;
+    }
+
+    public void setItems_type(String items_type) {
+        this.items_type = items_type;
     }
 }

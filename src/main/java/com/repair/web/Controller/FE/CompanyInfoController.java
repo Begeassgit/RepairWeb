@@ -15,18 +15,10 @@ public class CompanyInfoController {
    }
 
    @RequestMapping(value = "/ComInfo",method = RequestMethod.POST)
-    public ModelAndView ComInfoPage(String super_username,String super_company){
+    public ModelAndView ComInfoPage(String super_username,String super_company,String super_department){
        ModelAndView modelAndView=new ModelAndView();
        modelAndView.setViewName("ComInfo");
-       modelAndView.addObject("super",loginService.SuperInfo(super_username,super_company));
+       modelAndView.addObject("super",loginService.SuperInfo(super_username,super_company,super_department));
        return modelAndView;
-   }
-
-   @RequestMapping(value = "/ComInfos",method = RequestMethod.POST)
-   public ModelAndView ComInfoPages(String super_company){
-      ModelAndView modelAndView=new ModelAndView();
-      modelAndView.setViewName("ComInfo");
-      modelAndView.addObject("super",loginService.SuperInfos(super_company));
-      return modelAndView;
    }
 }

@@ -33,26 +33,20 @@ public class LoginService {
         return supervisorDao.checkSuperLogin(username,password);
     }
 
-    public Supervisor SuperInfo(String username,String company){
-        if(supervisorDao.superInfo(username,company)==null){
+    public Supervisor SuperInfo(String username,String company,String department){
+        if(supervisorDao.superInfo(username,company,department)==null){
             return null;
         }
-        return supervisorDao.superInfo(username,company);
+        return supervisorDao.superInfo(username,company,department);
+
     }
 
-    public Supervisor SuperInfos(String company){
-        if(supervisorDao.superInfos(company)==null){
-            return null;
-        }
-        return supervisorDao.superInfos(company);
-    }
-
-    public List<Supervisor> SuperInfoList(String company){
-        if(supervisorDao.superInfos(company)==null){
+    public List<Supervisor> SuperInfoList(String username,String company,String department){
+        if(supervisorDao.superInfo(username,company,department)==null){
             return null;
         }
         List<Supervisor> list=new ArrayList<>();
-        list.add(0,supervisorDao.superInfos(company));
+        list.add(0,supervisorDao.superInfo(username,company,department));
 
         return list;
     }

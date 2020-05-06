@@ -15,12 +15,12 @@ public interface DeviceDao {
     int addDevice(Device device);
 
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company LIKE #{device_company})")
-    List<Device> findDeviceInfo(String device_company);
+    List<Device> findDeviceInfo(String device_company,String device_department);
 
-    @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company = #{device_company})")
-    List<Device> ComDeviceInfo(String device_company);
+    @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company = #{device_company} AND device_department=#{device_department})")
+    List<Device> ComDeviceInfo(String device_company,String device_department);
 
-    @Select("SELECT COUNT(device_id) FROM maintenance_db.device_t WHERE (device_company=#{device_company})")
-    int getDeviceSum(String device_company);
+    @Select("SELECT COUNT(device_id) FROM maintenance_db.device_t WHERE (device_company=#{device_company} AND device_department=#{device_department})")
+    int getDeviceSum(String device_company,String device_department);
 
 }

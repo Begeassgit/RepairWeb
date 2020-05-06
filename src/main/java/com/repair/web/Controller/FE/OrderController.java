@@ -23,10 +23,10 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/myOrder",method = RequestMethod.POST)
-    public ModelAndView getMyOrder(String order_company){
+    public ModelAndView getMyOrder(String super_username, String order_company,String order_department){
         Map<String,List>map=new HashMap<>();
-        map.put("List",orderService.getOrder(order_company));
-        map.put("company",loginService.SuperInfoList(order_company));
+        map.put("List",orderService.getOrder(order_company,order_department));
+        map.put("company",loginService.SuperInfoList(super_username,order_company,order_department));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("OrderInfo");
         modelAndView.addAllObjects(map);
@@ -48,11 +48,11 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/pOrder",method = RequestMethod.POST)
-    public ModelAndView pOrder(String order_id,String order_company){
-        orderService.passOrder(order_id);
+    public ModelAndView pOrder(String order_id,String username,String order_company,String order_department){
+        orderService.passOrder(order_id,order_department);
         Map<String,List>map=new HashMap<>();
-        map.put("List",orderService.getOrder(order_company));
-        map.put("company",loginService.SuperInfoList(order_company));
+        map.put("List",orderService.getOrder(order_company,order_department));
+        map.put("company",loginService.SuperInfoList(username,order_company,order_department));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("OrderInfo");
         modelAndView.addAllObjects(map);
@@ -60,11 +60,11 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/dOrder",method = RequestMethod.POST)
-    public ModelAndView dOrder(String order_id,String order_company){
-        orderService.denyOrder(order_id);
+    public ModelAndView dOrder(String order_id,String username,String order_company,String order_department){
+        orderService.denyOrder(order_id,order_department);
         Map<String,List>map=new HashMap<>();
-        map.put("List",orderService.getOrder(order_company));
-        map.put("company",loginService.SuperInfoList(order_company));
+        map.put("List",orderService.getOrder(order_company,order_department));
+        map.put("company",loginService.SuperInfoList(username,order_company,order_department));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("OrderInfo");
         modelAndView.addAllObjects(map);

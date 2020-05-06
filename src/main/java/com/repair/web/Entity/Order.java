@@ -11,7 +11,7 @@ public class Order {
     private String order_deviceType;
     private String order_info;
     private String order_status;
-    private int order_price;
+    private String order_department;
     private String order_company;
 
     public int getId() {
@@ -78,12 +78,12 @@ public class Order {
         this.order_status = order_status;
     }
 
-    public int getOrder_price() {
-        return order_price;
+    public String getOrder_department() {
+        return order_department;
     }
 
-    public void setOrder_price(int order_price) {
-        this.order_price = order_price;
+    public void setOrder_department(String order_department) {
+        this.order_department = order_department;
     }
 
     public String getOrder_company() {

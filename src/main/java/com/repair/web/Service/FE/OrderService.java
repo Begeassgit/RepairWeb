@@ -19,28 +19,28 @@ public class OrderService {
         this.deviceDao=deviceDao;
     }
 
-    public List<Order> getOrder(String order_company){
-        return orderDao.getOrder(order_company);
+    public List<Order> getOrder(String order_company,String order_department){
+        return orderDao.getOrder(order_company,order_department);
     }
 
     public boolean addOrder(Order order){
         return orderDao.addOrder(order)>=1;
     }
 
-    public boolean passOrder(String order_id){
+    public boolean passOrder(String order_id,String order_department){
         String order_status="通过";
-        return orderDao.statusOrder(order_status,order_id)>=1;
+        return orderDao.statusOrder(order_status,order_id,order_department)>=1;
     }
 
-    public boolean denyOrder(String order_id){
+    public boolean denyOrder(String order_id,String order_department){
         String order_status="退回";
-        return orderDao.statusOrder(order_status,order_id)>=1;
+        return orderDao.statusOrder(order_status,order_id,order_department)>=1;
     }
 
-    public List<Integer> getCountInfo(String device_company){
+    public List<Integer> getCountInfo(String device_company,String order_department){
         List<Integer> list=new ArrayList<>();
-        list.add(0,orderDao.getRepairSum(device_company,"处理中"));
-        list.add(1,orderDao.getSwitchSum(device_company,"需置换"));
+        list.add(0,orderDao.getRepairSum(device_company,"处理中",order_department));
+        list.add(1,orderDao.getSwitchSum(device_company,"需置换",order_department));
         return list;
     }
 }

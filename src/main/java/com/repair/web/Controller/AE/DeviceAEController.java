@@ -11,7 +11,7 @@ import java.util.List;
 
 @Controller
 public class DeviceAEController {
-    public final DeviceAEService deviceAEService;
+ /*   public final DeviceAEService deviceAEService;
 
     public DeviceAEController(DeviceAEService deviceAEService){
         this.deviceAEService=deviceAEService;
@@ -27,6 +27,6 @@ public class DeviceAEController {
     public List<Device> findDeviceInfo(String deviceCompany){
         deviceCompany='%'+deviceCompany+'%';
         return deviceAEService.findDeviceInfo(deviceCompany);
-    }
+    }*/
 
 }

@@ -13,9 +13,6 @@ public interface SupervisorDao {
             "super_phone) VALUES (#{super_username},#{super_password},#{super_company},#{super_department},#{super_phone})")
     int register(Supervisor supervisor);
 
-    @Select("SELECT * FROM maintenance_db.supervisor_t WHERE(super_username=#{super_username} AND super_company=#{super_company})")
-    Supervisor superInfo(String super_username,String super_company);
-
-    @Select("SELECT * FROM maintenance_db.supervisor_t WHERE(super_company=#{super_company})")
-    Supervisor superInfos(String super_company);
+    @Select("SELECT * FROM maintenance_db.supervisor_t WHERE(super_username=#{super_username} AND super_company=#{super_company} AND super_department=#{super_department})")
+    Supervisor superInfo(String super_username,String super_company,String super_department);
 }
