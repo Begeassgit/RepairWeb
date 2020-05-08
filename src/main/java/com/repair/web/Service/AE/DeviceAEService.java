@@ -4,13 +4,15 @@ import com.repair.web.Dao.DeviceDao;
 import com.repair.web.Entity.Device;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+
 
 @Service
 public class DeviceAEService {
-   // public final DeviceDao deviceDao;
+    public final DeviceDao deviceDao;
 
-   /* public DeviceAEService(DeviceDao deviceDao){
+    public DeviceAEService(DeviceDao deviceDao){
         this.deviceDao=deviceDao;
     }
 
@@ -20,5 +22,12 @@ public class DeviceAEService {
 
     public List<Device> findDeviceInfo(String companyDevice){
         return deviceDao.findDeviceInfo(companyDevice);
-    }*/
+    }
+
+    public List<Device>companyBase(String company){
+
+
+        return deviceDao.deviceForBase(company);
+
+    }
 }

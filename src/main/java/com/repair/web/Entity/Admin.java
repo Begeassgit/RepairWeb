@@ -4,6 +4,7 @@ public class Admin {
     private int id;
     private String admin_username;
     private String admin_password;
+    private String admin_company;
 
     public int getId() {
         return id;
@@ -27,5 +28,13 @@ public class Admin {
 
     public void setAdmin_password(String admin_password) {
         this.admin_password = admin_password;
+    }
+
+    public String getAdmin_company() {
+        return admin_company;
+    }
+
+    public void setAdmin_company(String admin_company) {
+        this.admin_company = admin_company;
     }
 }

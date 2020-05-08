@@ -24,7 +24,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<!--
+
 <body class="fix-header card-no-border fix-sidebar">
     <div class="preloader">
         <div class="loader">
@@ -49,19 +49,19 @@
 
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form2" method="post" action="http://127.0.0.1:8080/ComInfo">
-                            <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
-                            <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
+                        <form id="form2" method="post" action="">
+                           <!--<input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">-->
+                           <!-- <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">-->
                         </form>
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/DeviceInfo">
-                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
-                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                        <form id="form1" method="post" action="">
+                            <!--<input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">-->
+                            <!--<input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">-->
+                            <!--<input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">-->
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
-                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">仓库管理</span></a></li>
                     </ul>
                 </nav>
 
@@ -100,16 +100,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list:${List}">
-                                                <td th:text="${list.order_id}"></td>
-                                                <td th:text="${list.order_deviceType}"></td>
-                                                <td th:text="${list.order_deviceName}"></td>
-                                                <td th:text="${list.order_info}"></td>
-                                                <td th:text="${list.order_address}"></td>
-                                                <td th:text="${list.order_time}"></td>
-                                                <td th:text="${list.order_status}"></td>
-                                                <td th:text="${list.order_company}"></td>
-                                                <td>
+                                            <tr th:each="list:${device}">
+                                                <td th:text="${list.device_id}"></td>
+                                                <td th:text="${list.device_type}"></td>
+                                                <td th:text="${list.device_name}"></td>
+                                                <td th:text="${list.device_info}"></td>
+                                                <td th:text="${list.device_company}"></td>
+                                                <td th:text="${list.device_department}"></td>
+                                                <td th:text="${list.device_time}"></td>
+                                                <!--<td th:text="${list.order_company}"></td>-->
+                                                <!--<td>
                                                     <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
                                                         <input type="hidden" name="order_id" th:value="${list.order_id}">
                                                         <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
@@ -125,7 +125,7 @@
                                                         <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
                                                     </form>
                                                     <input class="btn btn-danger" type="submit" value="退回" th:onclick="document.getElementById([[${list.order_id+'s'}]]).submit()">
-                                                </td>
+                                                </td>-->
                                             </tr>
 
                                         </tbody>
@@ -157,15 +157,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="list:${List}">
-                                            <td th:text="${list.order_id}"></td>
-                                            <td th:text="${list.order_deviceType}"></td>
-                                            <td th:text="${list.order_deviceName}"></td>
-                                            <td th:text="${list.order_info}"></td>
-                                            <td th:text="${list.order_address}"></td>
-                                            <td th:text="${list.order_time}"></td>
-                                            <td th:text="${list.order_status}"></td>
-                                            <td th:text="${list.order_company}"></td>
+                                        <tr th:each="itemsList:${items}">
+                                            <td th:text="${itemsList.items_id}"></td>
+                                            <td th:text="${itemsList.items_name}"></td>
+                                            <td th:text="${itemsList.items_type}"></td>
+                                            <td th:text="${itemsList.items_brand}"></td>
+                                            <td th:text="${itemsList.items_count}"></td>
+                                            <td th:text="${itemsList.items_department}"></td>
+                                            <td th:text="${itemsList.items_company}"></td>
+                                            <!--<td th:text="${itemsList.i}"></td>
                                             <td>
                                                 <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
                                                     <input type="hidden" name="order_id" th:value="${list.order_id}">
@@ -182,7 +182,7 @@
                                                     <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
                                                 </form>
                                                 <input class="btn btn-danger" type="submit" value="退回" th:onclick="document.getElementById([[${list.order_id+'s'}]]).submit()">
-                                            </td>
+                                            </td>-->
                                         </tr>
 
                                         </tbody>
@@ -195,7 +195,6 @@
             </div>
         </div>
     </div>
-    -->
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="assets/plugins/bootstrap/js/popper.min.js"></script>

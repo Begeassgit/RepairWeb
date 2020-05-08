@@ -16,7 +16,10 @@ public interface DeviceDao {
     int addDevice(Device device);
 
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company LIKE #{device_company})")
-    List<Device> findDeviceInfo(String device_company,String device_department);
+    List<Device> findDeviceInfo(String device_company);
+
+    @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company=#{device_company})")
+    List<Device> deviceForBase(String device_company);
 
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company = #{device_company} AND device_department=#{device_department})")
     List<Device> ComDeviceInfo(String device_company,String device_department);

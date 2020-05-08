@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -34,7 +34,7 @@
     </div>
     <div id="main-wrapper">
         <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">  12·
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <!-- This is  -->
@@ -59,10 +59,10 @@
             <div class="container-fluid">
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Profile</h3>
+                        <h3 class="text-themecolor">欢迎使用</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">扫描</a>
+                        <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                     </div>
                 </div>
                 <div class="row">
@@ -71,12 +71,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">Hanna Gover</h4>
-                                    <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
-                                    </div>
+                                    <h4 class="card-title m-t-10" th:text="${user.user_username}"></h4>
+                                    <h6 class="card-subtitle" th:text="${user.user_company}"></h6>
                                 </center>
                             </div>
                         </div>
@@ -88,7 +84,12 @@
                             <div class="card-body">
                                 <form class="form-horizontal form-material">
                                     <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
+                                        <div style="text-align: center">
+                                            <button class="btn btn-success">扫描</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">输入设备二维码信息</label>
                                         <div class="col-md-12">
                                             <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
                                         </div>
@@ -127,11 +128,6 @@
                                                 <option>Canada</option>
                                                 <option>Thailand</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
                                         </div>
                                     </div>
                                 </form>
