@@ -54,10 +54,10 @@
                         <form id="form2" method="post" action="http://127.0.0.1:8080/ComInfo">
                             <input type="hidden" name="super_username" th:value="${super.getSuper_username()}">
                             <input type="hidden" name="super_company" th:value="${super.getSuper_company()}">
-                            <input type="hidden" name="super_department" th:value="${super.getSuper_department}">
+                            <input type="hidden" name="super_department" th:value="${super.getSuper_department()}">
                         </form>
                         <form id="form3" method="post" action="http://127.0.0.1:8080/DeviceInfo">
-                            <input type="hidden" name="super_username" th:value="${super.getSuper_username()}">
+                            <input type="hidden" name="username" th:value="${super.getSuper_username()}">
                             <input type="hidden" name="company" th:value="${super.getSuper_company()}">
                             <input type="hidden" name="department" th:value="${super.getSuper_department()}">
                         </form>

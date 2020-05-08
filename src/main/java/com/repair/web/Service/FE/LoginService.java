@@ -34,17 +34,12 @@ public class LoginService {
     }
 
     public Supervisor SuperInfo(String username,String company,String department){
-        if(supervisorDao.superInfo(username,company,department)==null){
-            return null;
-        }
         return supervisorDao.superInfo(username,company,department);
 
     }
 
     public List<Supervisor> SuperInfoList(String username,String company,String department){
-        if(supervisorDao.superInfo(username,company,department)==null){
-            return null;
-        }
+
         List<Supervisor> list=new ArrayList<>();
         list.add(0,supervisorDao.superInfo(username,company,department));
 

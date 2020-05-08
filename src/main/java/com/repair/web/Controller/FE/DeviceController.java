@@ -43,4 +43,22 @@ public class DeviceController {
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
+    @RequestMapping(value = "/DelDevice",method = RequestMethod.POST)
+    public ModelAndView delDevice(String username,String company,String department,String device_id){
+        ModelAndView modelAndView=new ModelAndView();
+        if(!deviceService.delDevice(device_id)){
+            modelAndView.setViewName("Error");
+            return modelAndView;
+        }
+        Map<String,List>map=new HashMap<>();
+        map.put("DeviceList",deviceService.getCompanyDevices(company,department));
+        map.put("ItemsList",deviceService.getCompanyItems(company,department));
+        map.put("company",loginService.SuperInfoList(username,company,department));
+        map.put("total",deviceService.getDeviceSum(company,department));
+        map.put("status",orderService.getCountInfo(company,department));
+
+        modelAndView.setViewName("DeviceInfo");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
 }

@@ -36,4 +36,8 @@ public class DeviceService {
         list.add(0,deviceDao.getDeviceSum(device_company,device_department));
         return list;
     }
+
+    public boolean delDevice(String device_id){
+        return deviceDao.delOne(device_id)>=1;
+    }
 }

@@ -1,6 +1,7 @@
 package com.repair.web.Dao;
 
 import com.repair.web.Entity.Device;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -23,4 +24,6 @@ public interface DeviceDao {
     @Select("SELECT COUNT(device_id) FROM maintenance_db.device_t WHERE (device_company=#{device_company} AND device_department=#{device_department})")
     int getDeviceSum(String device_company,String device_department);
 
+    @Delete("DELETE FROM maintenance_db.device_t WHERE (device_id=#{device_id})")
+    int delOne(String device_id);
 }
