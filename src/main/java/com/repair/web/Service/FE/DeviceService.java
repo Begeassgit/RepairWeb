@@ -37,7 +37,8 @@ public class DeviceService {
         return list;
     }
 
-    public boolean delDevice(String device_id){
-        return deviceDao.delOne(device_id)>=1;
+    public boolean returnDevice(String device_id){
+        String device_department="";
+        return deviceDao.returnDevice(device_department,device_id)>=1;
     }
 }

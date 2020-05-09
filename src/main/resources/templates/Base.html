@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>订单管理</title>
+    <title>仓库管理</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -24,12 +24,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
 <body class="fix-header card-no-border fix-sidebar">
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <p class="loader__label"></p>
         </div>
     </div>
     <div id="main-wrapper">
@@ -49,14 +48,11 @@
 
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form2" method="post" action="">
-                           <!--<input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">-->
-                           <!-- <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">-->
+                        <form id="form2" method="post" action="http://127.0.0.1:8080/WelcomeBase">
+                           <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
-                        <form id="form1" method="post" action="">
-                            <!--<input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">-->
-                            <!--<input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">-->
-                            <!--<input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">-->
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/Base">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
@@ -75,7 +71,17 @@
                         <h3 class="text-themecolor">仓库表</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <form hidden id="outputDe" method="post" action="http://127.0.0.1:8080/OutputDe" >
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <form hidden id="outputItem" method="post" action="http://127.0.0.1:8080/OutputItem" >
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <a href="http://127.0.0.1:8080/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
+                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px">上传固定资产表</a>
+                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="">上传耗材表</a>
+                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputDe').submit();">下载固定资产表</a>
+                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputItem').submit();">下载耗材表</a>
                     </div>
                 </div>
                 <div class="row">
@@ -91,12 +97,11 @@
                                                 <th>#</th>
                                                 <th>设备类型</th>
                                                 <th>设备名字</th>
-                                                <th>维修内容</th>
-                                                <th>订单地址</th>
-                                                <th>订单时间</th>
-                                                <th>订单状态</th>
+                                                <th>设备信息</th>
+                                                <th>设备取得时间</th>
+                                                <th>使用部门</th>
                                                 <th>所属公司</th>
-                                                <th>审批</th>
+                                                <th>管理</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -105,29 +110,23 @@
                                                 <td th:text="${list.device_type}"></td>
                                                 <td th:text="${list.device_name}"></td>
                                                 <td th:text="${list.device_info}"></td>
-                                                <td th:text="${list.device_company}"></td>
-                                                <td th:text="${list.device_department}"></td>
                                                 <td th:text="${list.device_time}"></td>
-                                                <!--<td th:text="${list.order_company}"></td>-->
-                                                <!--<td>
-                                                    <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
-                                                        <input type="hidden" name="order_id" th:value="${list.order_id}">
-                                                        <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
-                                                        <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                                                        <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
+                                                <td th:text="${list.device_department}"></td>
+                                                <td th:text="${list.device_company}"></td>
+                                                <td>
+                                                    <form hidden th:id="${list.device_id}" method="post" action="http://127.0.0.1:8080/DelAE">
+                                                        <input type="hidden" name="device_id" th:value="${list.device_id}">
+                                                        <input type="hidden" name="company" th:value="${list.device_company}">
                                                     </form>
-                                                    <input class="btn btn-success" type="submit" value="通过" th:onclick="document.getElementById([[${list.order_id}]]).submit()">
+                                                    <input class="btn btn-success" type="submit" value="删除" th:onclick="document.getElementById([[${list.device_id}]]).submit()">
 
-                                                    <form hidden th:id="${list.order_id+'s'}" method="post" action="http://127.0.0.1:8080/dOrder">
-                                                        <input type="hidden" name="order_id" th:value="${list.order_id}">
-                                                        <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
-                                                        <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                                                        <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
+                                                    <form hidden th:id="${list.device_id+'s'}" method="post" action="http://127.0.0.1:8080/dOrder">
+                                                        <input type="hidden" name="order_id" th:value="${list.device_id}">
+                                                        <input type="hidden" name="order_company" th:value="${list.device_company}">
                                                     </form>
-                                                    <input class="btn btn-danger" type="submit" value="退回" th:onclick="document.getElementById([[${list.order_id+'s'}]]).submit()">
-                                                </td>-->
+                                                    <input class="btn btn-danger" type="submit" value="出借" th:onclick="document.getElementById([[${list.device_id+'s'}]]).submit()">
+                                                </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -148,12 +147,11 @@
                                             <th>#</th>
                                             <th>设备类型</th>
                                             <th>设备名字</th>
-                                            <th>维修内容</th>
-                                            <th>订单地址</th>
-                                            <th>订单时间</th>
-                                            <th>订单状态</th>
+                                            <th>耗材品牌</th>
+                                            <th>耗材余量</th>
+                                            <th>所属部门</th>
                                             <th>所属公司</th>
-                                            <th>审批</th>
+                                            <th>管理</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -165,24 +163,19 @@
                                             <td th:text="${itemsList.items_count}"></td>
                                             <td th:text="${itemsList.items_department}"></td>
                                             <td th:text="${itemsList.items_company}"></td>
-                                            <!--<td th:text="${itemsList.i}"></td>
                                             <td>
-                                                <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
-                                                    <input type="hidden" name="order_id" th:value="${list.order_id}">
-                                                    <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
-                                                    <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                                                    <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
+                                                <form hidden th:id="${itemsList.items_id+'ite'}" method="post" action="http://127.0.0.1:8080/DelAEItems">
+                                                    <input type="hidden" name="items_id" th:value="${itemsList.items_id}">
+                                                    <input type="hidden" name="company" th:value="${itemsList.items_company}">
                                                 </form>
-                                                <input class="btn btn-success" type="submit" value="通过" th:onclick="document.getElementById([[${list.order_id}]]).submit()">
+                                                <input class="btn btn-success" type="submit" value="删除" th:onclick="document.getElementById([[${itemsList.items_id+'ite'}]]).submit()">
 
-                                                <form hidden th:id="${list.order_id+'s'}" method="post" action="http://127.0.0.1:8080/dOrder">
-                                                    <input type="hidden" name="order_id" th:value="${list.order_id}">
-                                                    <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
-                                                    <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                                                    <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
+                                                <form hidden th:id="${itemsList.items_id+'ites'}" method="post" action="http://127.0.0.1:8080/dOrder">
+                                                    <input type="hidden" name="order_id" th:value="${itemsList.items_id}">
+                                                    <input type="hidden" name="order_company" th:value="${itemsList.items_company}">
                                                 </form>
-                                                <input class="btn btn-danger" type="submit" value="退回" th:onclick="document.getElementById([[${list.order_id+'s'}]]).submit()">
-                                            </td>-->
+                                                <input class="btn btn-danger" type="submit" value="退回" th:onclick="document.getElementById([[${itemsList.items_id+'ites'}]]).submit()">
+                                            </td>
                                         </tr>
 
                                         </tbody>

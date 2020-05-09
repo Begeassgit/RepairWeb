@@ -46,11 +46,10 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form2" method="post" action="">
-                            <!--<input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">-->
-                            <!-- <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">-->
+                        <form id="form2" method="post" action="http://127.0.0.1:8080/WelcomeBase">
+                            <input type="hidden" name="company" th:value="${admin.admin_company}">
                         </form>
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/Admin/Base">
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/Base">
                             <input type="hidden" name="company" th:value="${admin.admin_company}">
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
@@ -70,7 +69,7 @@
                         <h3 class="text-themecolor">公司信息</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <a href="http://127.0.0.1:8080/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                     </div>
                 </div>
                 <div class="row">

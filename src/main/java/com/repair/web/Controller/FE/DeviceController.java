@@ -46,7 +46,7 @@ public class DeviceController {
     @RequestMapping(value = "/DelDevice",method = RequestMethod.POST)
     public ModelAndView delDevice(String username,String company,String department,String device_id){
         ModelAndView modelAndView=new ModelAndView();
-        if(!deviceService.delDevice(device_id)){
+        if(!deviceService.returnDevice(device_id)){
             modelAndView.setViewName("Error");
             return modelAndView;
         }
