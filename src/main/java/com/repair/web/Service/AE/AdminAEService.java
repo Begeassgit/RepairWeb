@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminAEService {
-    public final AdminDao adminDao;
+    private final AdminDao adminDao;
 
     public AdminAEService(AdminDao adminDao){
         this.adminDao=adminDao;

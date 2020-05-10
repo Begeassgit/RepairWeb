@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginAEController {
-    public final AdminAEService adminAEService;
+    private final AdminAEService adminAEService;
 
     public LoginAEController(AdminAEService adminAEService){this.adminAEService=adminAEService;}
 

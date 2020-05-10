@@ -14,9 +14,11 @@ import java.net.URLEncoder;
 @Controller
 public class QrCodeController {
     private final QrCodeService qrCodeService;
+    private final QrCodeTool qrCodeTool;
 
-    public QrCodeController(QrCodeService qrCodeService){
+    public QrCodeController(QrCodeService qrCodeService,QrCodeTool qrCodeTool){
         this.qrCodeService=qrCodeService;
+        this.qrCodeTool=qrCodeTool;
     }
     @RequestMapping(value = "/outPutQrCode",method = RequestMethod.POST)
     public void outPutQrCode(HttpServletResponse response){
@@ -24,9 +26,9 @@ public class QrCodeController {
         OutputStream outputStream;
         try{
             name= URLEncoder.encode(name,"UTF-8");
-            response.setHeader("Content-Disposition","attachment;filename="+name);
             response.setContentType("image/jpeg");
-            InputStream inputStream= new FileInputStream(new File("asd"));
+            response.setHeader("Content-Disposition","attachment;filename="+name);
+
             outputStream=response.getOutputStream();
             outputStream.flush();
             outputStream.close();

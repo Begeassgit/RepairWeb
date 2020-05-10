@@ -23,8 +23,8 @@ import java.util.Map;
 
 @Controller
 public class DeviceAEController {
- public final DeviceAEService deviceAEService;
- public final ItemsAEService itemsAEService;
+ private final DeviceAEService deviceAEService;
+ private final ItemsAEService itemsAEService;
 
     public DeviceAEController(DeviceAEService deviceAEService,ItemsAEService itemsAEService){
         this.deviceAEService=deviceAEService;

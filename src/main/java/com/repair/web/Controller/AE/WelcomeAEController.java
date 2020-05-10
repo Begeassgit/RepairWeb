@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class WelcomeAEController {
-    public final WelcomeAEService welcomeAEService;
+    private final WelcomeAEService welcomeAEService;
 
     public WelcomeAEController(WelcomeAEService welcomeAEService){
         this.welcomeAEService=welcomeAEService;

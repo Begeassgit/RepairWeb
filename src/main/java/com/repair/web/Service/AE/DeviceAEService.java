@@ -20,8 +20,8 @@ import java.util.List;
 
 @Service
 public class DeviceAEService {
-    public final DeviceDao deviceDao;
-    public final ItemsDao itemsDao;
+    private final DeviceDao deviceDao;
+    private final ItemsDao itemsDao;
 
     public DeviceAEService(DeviceDao deviceDao,ItemsDao itemsDao){
         this.deviceDao=deviceDao;

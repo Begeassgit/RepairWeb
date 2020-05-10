@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class ItemsAEService {
-    public final ItemsDao itemsDao;
+    private final ItemsDao itemsDao;
 
     public ItemsAEService(ItemsDao itemsDao) {
         this.itemsDao = itemsDao;
