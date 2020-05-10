@@ -119,14 +119,14 @@ public class DeviceAEService {
                 for(int j=1;j<rows;j++){
                     device=new Device();
                     XSSFRow xssfRow=sheet.getRow(j);
-                    device.setDevice_id(dataFormatter.formatCellValue(xssfRow.getCell(1)));
-                    device.setDevice_name(dataFormatter.formatCellValue(xssfRow.getCell(2)));
-                    device.setDevice_type(dataFormatter.formatCellValue(xssfRow.getCell(3)));
-                    device.setDevice_brand(dataFormatter.formatCellValue(xssfRow.getCell(4)));
-                    device.setDevice_time(xssfRow.getCell(5).getDateCellValue());
-                    device.setDevice_info(xssfRow.getCell(6).getStringCellValue());
-                    device.setDevice_company(xssfRow.getCell(7).getStringCellValue());
-                    device.setDevice_department(xssfRow.getCell(8).getStringCellValue());
+                    device.setDevice_id(dataFormatter.formatCellValue(xssfRow.getCell(0)));
+                    device.setDevice_name(dataFormatter.formatCellValue(xssfRow.getCell(1)));
+                    device.setDevice_type(dataFormatter.formatCellValue(xssfRow.getCell(2)));
+                    device.setDevice_brand(dataFormatter.formatCellValue(xssfRow.getCell(3)));
+                    device.setDevice_time(xssfRow.getCell(4).getDateCellValue());
+                    device.setDevice_info(xssfRow.getCell(5).getStringCellValue());
+                    device.setDevice_company(xssfRow.getCell(6).getStringCellValue());
+                    device.setDevice_department(xssfRow.getCell(7).getStringCellValue());
                     flag=deviceDao.addDevice(device);
                 }
             }
@@ -150,14 +150,14 @@ public class DeviceAEService {
                 for(int j=1;j<rows;j++){
                     items=new Items();
                     XSSFRow xssfRow=sheet.getRow(j);
-                    items.setItems_id(dataFormatter.formatCellValue(xssfRow.getCell(1)));
-                    items.setItems_name(dataFormatter.formatCellValue(xssfRow.getCell(2)));
-                    items.setItems_type(dataFormatter.formatCellValue(xssfRow.getCell(3)));
-                    items.setItems_brand(dataFormatter.formatCellValue(xssfRow.getCell(4)));
-                    items.setItems_count(dataFormatter.formatCellValue(xssfRow.getCell(5)));
-                    items.setItems_info(dataFormatter.formatCellValue(xssfRow.getCell(6)));
-                    items.setItems_company(dataFormatter.formatCellValue(xssfRow.getCell(7)));
-                    items.setItems_department(dataFormatter.formatCellValue(xssfRow.getCell(8)));
+                    items.setItems_id(dataFormatter.formatCellValue(xssfRow.getCell(0)));
+                    items.setItems_name(dataFormatter.formatCellValue(xssfRow.getCell(1)));
+                    items.setItems_type(dataFormatter.formatCellValue(xssfRow.getCell(2)));
+                    items.setItems_brand(dataFormatter.formatCellValue(xssfRow.getCell(3)));
+                    items.setItems_count(dataFormatter.formatCellValue(xssfRow.getCell(4)));
+                    items.setItems_info(dataFormatter.formatCellValue(xssfRow.getCell(5)));
+                    items.setItems_company(dataFormatter.formatCellValue(xssfRow.getCell(6)));
+                    items.setItems_department(dataFormatter.formatCellValue(xssfRow.getCell(7)));
                     flagItem=itemsDao.addItems(items);
                 }
             }

@@ -12,8 +12,8 @@ public interface DeviceDao {
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_id=#{device_id})")
     List<Device> getDeviceInfo(String device_id);
 
-    @Insert("INSERT INTO maintenance_db.device_t(device_id,device_name,device_type,device_brand,device_time,device_info,device_company)" +
-            "VALUES(#{device_id},#{device_name},#{device_type},#{device_brand},#{device_time},#{device_info},#{device_company})")
+    @Insert("INSERT INTO maintenance_db.device_t(device_id,device_name,device_type,device_brand,device_time,device_info,device_company,device_department)" +
+            "VALUES(#{device_id},#{device_name},#{device_type},#{device_brand},#{device_time},#{device_info},#{device_company},#{device_department})")
     int addDevice(Device device);
 
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_company LIKE #{device_company})")

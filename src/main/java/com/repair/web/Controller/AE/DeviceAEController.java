@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -98,7 +99,7 @@ public class DeviceAEController {
         map.put("items",itemsAEService.itemsForBase(company));
         map.put("company",list);
 
-        modelAndView.setViewName("Base");
+        modelAndView.setViewName("BaseItems");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
@@ -142,17 +143,41 @@ public class DeviceAEController {
     }
 
     @RequestMapping(value = "/UploadDe",method = RequestMethod.POST)
-    public void uploadDevice(@Param("file")MultipartFile file){
+    public ModelAndView uploadDevice(@RequestParam("file")MultipartFile file,String company){
+        ModelAndView modelAndView=new ModelAndView();
         if(!deviceAEService.uploadDevice(file)){
-
+            modelAndView.setViewName("Error");
         }
+        else {
+            Map<String,List> map=new HashMap<>();
+            List list=new ArrayList();
+            list.add(0,company);
+            map.put("items",itemsAEService.itemsForBase(company));
+            map.put("company",list);
+            modelAndView.setViewName("Base");
+            modelAndView.addAllObjects(map);
+        }
+        return modelAndView;
     }
 
     @RequestMapping(value = "/UploadItem",method = RequestMethod.POST)
-    public void uploadItem(@Param("file")MultipartFile file){
+    public ModelAndView uploadItem(@RequestParam("file")MultipartFile file,String company){
+        ModelAndView modelAndView=new ModelAndView();
         if(!deviceAEService.uploadItem(file)){
+            modelAndView.setViewName("Error");
+        }
+        else {
+            Map<String,List> map=new HashMap<>();
+            List list=new ArrayList();
+            list.add(0,company);
+            map.put("items",itemsAEService.itemsForBase(company));
+            map.put("company",list);
+            modelAndView.setViewName("BaseItems");
+            modelAndView.addAllObjects(map);
 
         }
+
+        return modelAndView;
     }
 
 }
