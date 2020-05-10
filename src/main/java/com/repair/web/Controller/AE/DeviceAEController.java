@@ -4,10 +4,6 @@ import com.repair.web.Entity.Device;
 import com.repair.web.Service.AE.DeviceAEService;
 import com.repair.web.Service.AE.ItemsAEService;
 import org.apache.ibatis.annotations.Param;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFShape;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,10 +47,22 @@ public class DeviceAEController {
         List list=new ArrayList();
         list.add(0,company);
         map.put("device",deviceAEService.companyBase(company));
-        map.put("items",itemsAEService.itemsForBase(company));
         map.put("company",list);
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("Base");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/BaseItem",method = RequestMethod.POST)
+    public ModelAndView basePageItems(String company){
+        Map<String,List> map=new HashMap<>();
+        List list=new ArrayList();
+        list.add(0,company);
+        map.put("items",itemsAEService.itemsForBase(company));
+        map.put("company",list);
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("BaseItems");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }

@@ -43,11 +43,13 @@
             </nav>
         </header>
         <aside class="left-sidebar">
+
             <div class="scroll-sidebar">
+
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <form id="form2" method="post" action="http://127.0.0.1:8080/WelcomeBase">
-                           <input type="hidden" name="company" th:value="${company.get(0)}">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
                         <form id="form1" method="post" action="http://127.0.0.1:8080/Base">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
@@ -63,7 +65,9 @@
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
                     </ul>
                 </nav>
+
             </div>
+
         </aside>
         <div class="page-wrapper">
             <div class="container-fluid">
@@ -72,56 +76,57 @@
                         <h3 class="text-themecolor">仓库表</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <form hidden id="outputDe" method="post" action="http://127.0.0.1:8080/OutputDe" >
+                        <form hidden id="outputItem" method="post" action="http://127.0.0.1:8080/OutputItem" >
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
                         <a href="http://127.0.0.1:8080/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
-                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px">上传固定资产表</a>
-                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputDe').submit();">下载固定资产表</a>
+                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="">上传耗材表</a>
+                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputItem').submit();">下载耗材表</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">固定资产</h4>
+                                <h4 class="card-title">耗材</h4>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>设备类型</th>
-                                                <th>设备名字</th>
-                                                <th>设备信息</th>
-                                                <th>设备取得时间</th>
-                                                <th>使用部门</th>
-                                                <th>所属公司</th>
-                                                <th>管理</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>耗材类型</th>
+                                            <th>耗材名字</th>
+                                            <th>耗材品牌</th>
+                                            <th>耗材余量</th>
+                                            <th>所属部门</th>
+                                            <th>所属公司</th>
+                                            <th>管理</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list:${device}">
-                                                <td th:text="${list.device_id}"></td>
-                                                <td th:text="${list.device_type}"></td>
-                                                <td th:text="${list.device_name}"></td>
-                                                <td th:text="${list.device_info}"></td>
-                                                <td th:text="${list.device_time}"></td>
-                                                <td th:text="${list.device_department}"></td>
-                                                <td th:text="${list.device_company}"></td>
-                                                <td>
-                                                    <form hidden th:id="${list.device_id}" method="post" action="http://127.0.0.1:8080/DelAE">
-                                                        <input type="hidden" name="device_id" th:value="${list.device_id}">
-                                                        <input type="hidden" name="company" th:value="${list.device_company}">
-                                                    </form>
-                                                    <input class="btn btn-success" type="submit" value="删除" th:onclick="document.getElementById([[${list.device_id}]]).submit()">
+                                        <tr th:each="itemsList:${items}">
+                                            <td th:text="${itemsList.items_id}"></td>
+                                            <td th:text="${itemsList.items_name}"></td>
+                                            <td th:text="${itemsList.items_type}"></td>
+                                            <td th:text="${itemsList.items_brand}"></td>
+                                            <td th:text="${itemsList.items_count}"></td>
+                                            <td th:text="${itemsList.items_department}"></td>
+                                            <td th:text="${itemsList.items_company}"></td>
+                                            <td>
+                                                <form hidden th:id="${itemsList.items_id+'ite'}" method="post" action="http://127.0.0.1:8080/DelAEItems">
+                                                    <input type="hidden" name="items_id" th:value="${itemsList.items_id}">
+                                                    <input type="hidden" name="company" th:value="${itemsList.items_company}">
+                                                </form>
+                                                <input class="btn btn-success" type="submit" value="删除" th:onclick="document.getElementById([[${itemsList.items_id+'ite'}]]).submit()">
 
-                                                    <form hidden th:id="${list.device_id+'s'}" method="post" action="http://127.0.0.1:8080/dOrder">
-                                                        <input type="hidden" name="order_id" th:value="${list.device_id}">
-                                                        <input type="hidden" name="order_company" th:value="${list.device_company}">
-                                                    </form>
-                                                    <input class="btn btn-danger" type="submit" value="出借" th:onclick="document.getElementById([[${list.device_id+'s'}]]).submit()">
-                                                </td>
-                                            </tr>
+                                                <form hidden th:id="${itemsList.items_id+'ites'}" method="post" action="http://127.0.0.1:8080/dOrder">
+                                                    <input type="hidden" name="order_id" th:value="${itemsList.items_id}">
+                                                    <input type="hidden" name="order_company" th:value="${itemsList.items_company}">
+                                                </form>
+                                                <input class="btn btn-danger" type="submit" value="退回" th:onclick="document.getElementById([[${itemsList.items_id+'ites'}]]).submit()">
+                                            </td>
+                                        </tr>
+
                                         </tbody>
                                     </table>
                                 </div>

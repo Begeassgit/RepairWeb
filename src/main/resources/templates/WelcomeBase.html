@@ -52,10 +52,15 @@
                         <form id="form1" method="post" action="http://127.0.0.1:8080/Base">
                             <input type="hidden" name="company" th:value="${admin.admin_company}">
                         </form>
+                        <form id="form3" method="post" action="http://127.0.0.1:8080/BaseItem">
+                            <input type="hidden" name="company" th:value="${admin.admin_company}">
+                        </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
-                            <i class="mdi mdi-gauge"></i><span class="hide-menu">仓库管理</span></a></li>
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

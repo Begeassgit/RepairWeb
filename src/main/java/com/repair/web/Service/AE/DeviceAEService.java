@@ -4,7 +4,6 @@ import com.repair.web.Dao.DeviceDao;
 import com.repair.web.Dao.ItemsDao;
 import com.repair.web.Entity.Device;
 import com.repair.web.Entity.Items;
-import com.repair.web.Entity.User;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
