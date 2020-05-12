@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface DeviceDao {
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_id=#{device_id})")
-    List<Device> getDeviceInfo(String device_id);
+    Device getDeviceInfo(String device_id);
 
     @Insert("INSERT INTO maintenance_db.device_t(device_id,device_name,device_type,device_brand,device_time,device_info,device_company,device_department)" +
             "VALUES(#{device_id},#{device_name},#{device_type},#{device_brand},#{device_time},#{device_info},#{device_company},#{device_department})")

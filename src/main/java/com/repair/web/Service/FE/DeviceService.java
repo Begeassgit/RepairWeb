@@ -19,7 +19,7 @@ public class DeviceService {
         this.itemsDao=itemsDao;
     }
 
-    public List<Device>getDeviceInfo(String device_id){
+    public Device getDeviceInfo(String device_id){
         return deviceDao.getDeviceInfo(device_id);
     }
 

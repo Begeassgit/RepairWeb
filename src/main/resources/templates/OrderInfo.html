@@ -64,10 +64,17 @@
                             <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
                         </form>
+                        <form id="form4" method="post" action="http://127.0.0.1:8080/ItemsInfo">
+                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form4').submit();" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
                     </ul>

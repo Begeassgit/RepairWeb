@@ -7,19 +7,15 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Hashtable;
 
 public class QrCodeTool {
-    public static final String FORMAT = "JPG";
+
     private static final int QrCODE_SIZE = 300;
 
-    public boolean creat(OutputStream outputStream,String info) throws WriterException, IOException{
+    public Image creat(String info) throws WriterException{
         Hashtable<EncodeHintType,ErrorCorrectionLevel> hashtable=new Hashtable<>();
         hashtable.put(EncodeHintType.ERROR_CORRECTION,ErrorCorrectionLevel.H);
         QRCodeWriter qrCodeWriter=new QRCodeWriter();
@@ -39,6 +35,6 @@ public class QrCodeTool {
                 }
             }
         }
-        return ImageIO.write(image,FORMAT,outputStream);
+        return image;
     }
 }

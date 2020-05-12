@@ -70,11 +70,18 @@
                             <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
                         </form>
+                        <form id="form4" method="post" action="http://127.0.0.1:8080/ItemsInfo">
+                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
 
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form4').submit();" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
                     </ul>
@@ -173,7 +180,7 @@
                                                 <td th:text="${list.getDevice_info()}"></td>
                                                 <td th:text="${list.getDevice_company()}"></td>
                                                 <td>
-                                                    <form hidden th:id="${list.getDevice_id()}" method="post" action="">
+                                                    <form hidden th:id="${list.getDevice_id()}" method="post" action="http://127.0.0.1:8080/OutputQrCode">
                                                         <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
                                                         <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                                                         <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
@@ -191,45 +198,6 @@
                                                     <input type="submit" th:onclick="document.getElementById([[${list.getDevice_id()+'de'}]]).submit()" value="退还设备" class="btn btn-danger">
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div><h4 class="card-title"><span class="lstick"></span>部门耗材</h4></div>
-                                </div>
-                                <div class="table-responsive m-t-20">
-                                    <table class="table vm no-th-brd no-wrap pro-of-month">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>耗材名</th>
-                                            <th>耗材类型</th>
-                                            <th>品牌</th>
-                                            <th>余量</th>
-                                            <th>部门</th>
-                                            <th>备注</th>
-                                            <th>所属公司</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="listI:${ItemsList}">
-                                            <td th:text="${listI.getItems_id()}"></td>
-                                            <td th:text="${listI.getItems_name()}"></td>
-                                            <td th:text="${listI.getItems_type()}"></td>
-                                            <td th:text="${listI.getItems_brand()}"></td>
-                                            <td th:text="${listI.getItems_count()}"></td>
-                                            <td th:text="${listI.getItems_department()}"></td>
-                                            <td th:text="${listI.getItems_info()}"></td>
-                                            <td th:text="${listI.getItems_company()}"></td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

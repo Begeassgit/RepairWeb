@@ -1,6 +1,5 @@
 package com.repair.web.Controller.AE;
 
-import com.repair.web.Entity.Admin;
 import com.repair.web.Service.AE.WelcomeAEService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

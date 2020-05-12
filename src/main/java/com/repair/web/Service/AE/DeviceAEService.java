@@ -28,9 +28,6 @@ public class DeviceAEService {
         this.itemsDao=itemsDao;
     }
 
-    public List<Device> getDeviceInfo(){
-        return deviceDao.getDeviceInfo("");
-    }
 
     public List<Device> findDeviceInfo(String companyDevice){
         return deviceDao.findDeviceInfo(companyDevice);
