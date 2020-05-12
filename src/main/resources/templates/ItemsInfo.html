@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>耗材管理</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="Css/style.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="Css/pages/dashboard.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">耗材管理</p>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <form id="form1" method="post" action="http://127.0.0.1:8080/ComInfo">
+                            <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="super_department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
+                        <form id="form2" method="post" action="http://127.0.0.1:8080/myOrder">
+                            <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
+                        <form id="form3" method="post" action="http://127.0.0.1:8080/DeviceInfo">
+                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
+                        <form id="form4" method="post" action="http://127.0.0.1:8080/ItemsInfo">
+                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
+
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                            <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form4').submit();" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
+                            <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+
+        </aside>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">控制板</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <h3 class="card-title m-b-5"><span class="lstick"></span>Sales Overview </h3>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <label>
+                                            <select class="custom-select b-0">
+                                                <option selected="">January 2017</option>
+                                                <option value="1">February 2017</option>
+                                                <option value="2">March 2017</option>
+                                                <option value="3">April 2017</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="sales-overview2" class="p-relative" style="height:360px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"><span class="lstick"></span>部门设备状态</h4>
+                                <div id="visitor" style="height:250px; width:100%;"></div>
+                                <table class="table vm font-14">
+                                    <tr>
+                                        <td class="b-0">使用中</td>
+                                        <td class="text-right font-medium b-0" th:text="${status.get(0)}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>需要补充</td>
+                                        <td class="text-right font-medium" th:text="${status.get(1)}"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div><h4 class="card-title"><span class="lstick"></span>部门耗材</h4></div>
+                                </div>
+                                <div class="table-responsive m-t-20">
+                                    <table class="table vm no-th-brd no-wrap pro-of-month">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>耗材名</th>
+                                            <th>耗材类型</th>
+                                            <th>品牌</th>
+                                            <th>余量</th>
+                                            <th>部门</th>
+                                            <th>备注</th>
+                                            <th>所属公司</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="listI:${ItemsList}">
+                                            <td th:text="${listI.getItems_id()}"></td>
+                                            <td th:text="${listI.getItems_name()}"></td>
+                                            <td th:text="${listI.getItems_type()}"></td>
+                                            <td th:text="${listI.getItems_brand()}"></td>
+                                            <td th:text="${listI.getItems_count()}"></td>
+                                            <td th:text="${listI.getItems_department()}"></td>
+                                            <td th:text="${listI.getItems_info()}"></td>
+                                            <td th:text="${listI.getItems_company()}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="Js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="Js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="Js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="Js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="assets/plugins/d3/d3.min.js"></script>
+    <script src="assets/plugins/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="Js/dashboard.js"></script>
+    <script>
+
+    </script>
+
+</body>
+</html>
