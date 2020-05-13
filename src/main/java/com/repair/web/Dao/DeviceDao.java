@@ -33,4 +33,7 @@ public interface DeviceDao {
 
     @Update("UPDATE maintenance_db.device_t SET device_department=#{device_department} WHERE (device_id=#{device_id})")
     int returnDevice(String device_department,String device_id);
+
+    @Update("UPDATE maintenance_db.device_t SET device_department=#{device_department} WHERE (device_id=#{device_id})")
+    int borrowDevice(String device_department,String device_id);
 }

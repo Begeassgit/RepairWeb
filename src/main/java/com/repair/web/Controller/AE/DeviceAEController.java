@@ -1,9 +1,10 @@
 package com.repair.web.Controller.AE;
 
 import com.repair.web.Entity.Device;
+import com.repair.web.Entity.TakeList;
 import com.repair.web.Service.AE.DeviceAEService;
 import com.repair.web.Service.AE.ItemsAEService;
-import org.apache.ibatis.annotations.Param;
+import com.repair.web.Service.AE.TakeListAEService;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +26,12 @@ import java.util.Map;
 public class DeviceAEController {
  private final DeviceAEService deviceAEService;
  private final ItemsAEService itemsAEService;
+ private final TakeListAEService takeListAEService;
 
-    public DeviceAEController(DeviceAEService deviceAEService,ItemsAEService itemsAEService){
+    public DeviceAEController(DeviceAEService deviceAEService,ItemsAEService itemsAEService,TakeListAEService takeListAEService){
         this.deviceAEService=deviceAEService;
         this.itemsAEService=itemsAEService;
+        this.takeListAEService=takeListAEService;
     }
 
     @RequestMapping(value = "/DeviceInfoAE",method = RequestMethod.GET)
@@ -152,7 +155,7 @@ public class DeviceAEController {
             Map<String,List> map=new HashMap<>();
             List list=new ArrayList();
             list.add(0,company);
-            map.put("items",itemsAEService.itemsForBase(company));
+            map.put("device",deviceAEService.companyBase(company));
             map.put("company",list);
             modelAndView.setViewName("Base");
             modelAndView.addAllObjects(map);
@@ -177,6 +180,46 @@ public class DeviceAEController {
 
         }
 
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/UpdateDe",method = RequestMethod.POST)
+    public ModelAndView updateDe(String company,String department,String device_id){
+        TakeList takeList=new TakeList();
+        takeList.setTake_list_id(device_id);
+        takeList.setTake_list_name(deviceAEService.getDeviceInfo(device_id).getDevice_name());
+        takeList.setTake_list_department(department);
+        takeList.setTake_list_company(company);
+        takeListAEService.addTakeList(takeList);
+        deviceAEService.borrowUpdate(department,device_id);
+        ModelAndView modelAndView=new ModelAndView();
+        Map<String,List> map=new HashMap<>();
+        List list=new ArrayList();
+        list.add(0,company);
+        map.put("device",deviceAEService.companyBase(company));
+        map.put("company",list);
+        modelAndView.setViewName("Base");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/UpdateItem",method = RequestMethod.POST)
+    public ModelAndView updateItem(String company,String department,String item_id){
+        TakeList takeList=new TakeList();
+        takeList.setTake_list_id(item_id);
+        takeList.setTake_list_name(itemsAEService.getItemsInfo(item_id).getItems_name());
+        takeList.setTake_list_department(department);
+        takeList.setTake_list_company(company);
+        takeListAEService.addTakeList(takeList);
+        itemsAEService.borrowUpdate(department,item_id);
+        ModelAndView modelAndView=new ModelAndView();
+        Map<String,List> map=new HashMap<>();
+        List list=new ArrayList();
+        list.add(0,company);
+        map.put("items",itemsAEService.itemsForBase(company));
+        map.put("company",list);
+        modelAndView.setViewName("BaseItems");
+        modelAndView.addAllObjects(map);
         return modelAndView;
     }
 

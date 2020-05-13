@@ -62,12 +62,17 @@
                         <form id="form3" method="post" action="http://127.0.0.1:8080/BaseItem">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
+                        <form id="form4" method="post" action="http://127.0.0.1:8080/TakeList">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form4').submit();" aria-expanded="false">
+                            <i class="mdi mdi-gauge"></i><span class="hide-menu">领用单管理</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -109,6 +114,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabels">输入出借部门</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form action="http://127.0.0.1:8080/UpdateItem" method="post" id="update">
+                                                <input type="text" name="department" placeholder="输入出借部门">
+                                                <input type="text" name="device_id" placeholder="输入耗材编号">
+                                                <input type="hidden" name="company" th:value="${company.get(0)}">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('update').submit();"style="color: azure">提交</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -145,12 +172,7 @@
                                                     <input type="hidden" name="company" th:value="${itemsList.items_company}">
                                                 </form>
                                                 <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${itemsList.items_id+'ite'}]]).submit()">
-
-                                                <form hidden th:id="${itemsList.items_id+'ites'}" method="post" action="http://127.0.0.1:8080/dOrder">
-                                                    <input type="hidden" name="order_id" th:value="${itemsList.items_id}">
-                                                    <input type="hidden" name="order_company" th:value="${itemsList.items_company}">
-                                                </form>
-                                                <input class="btn btn-info" type="submit" value="出借" th:onclick="document.getElementById([[${itemsList.items_id+'ites'}]]).submit()">
+                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals">出借</button>
                                             </td>
                                         </tr>
 

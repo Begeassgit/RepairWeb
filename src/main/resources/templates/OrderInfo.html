@@ -110,6 +110,7 @@
                                                 <th>订单地址</th>
                                                 <th>订单时间</th>
                                                 <th>订单状态</th>
+                                                <th>提交部门</th>
                                                 <th>所属公司</th>
                                                 <th>审批</th>
                                             </tr>
@@ -123,6 +124,7 @@
                                                 <td th:text="${list.order_address}"></td>
                                                 <td th:text="${list.order_time}"></td>
                                                 <td th:text="${list.order_status}"></td>
+                                                <td th:text="${list.order_department}"></td>
                                                 <td th:text="${list.order_company}"></td>
                                                 <td>
                                                     <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">

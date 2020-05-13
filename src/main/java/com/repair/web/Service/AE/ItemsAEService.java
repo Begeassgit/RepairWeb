@@ -17,4 +17,12 @@ public class ItemsAEService {
     public List<Items>itemsForBase(String company){
         return itemsDao.itemsForBase(company);
     }
+
+    public boolean borrowUpdate(String department,String items_id){
+        return itemsDao.updateBorrow(items_id,department)>=1;
+    }
+
+    public Items getItemsInfo(String items_id){
+        return itemsDao.getItemsInfo(items_id);
+    }
 }

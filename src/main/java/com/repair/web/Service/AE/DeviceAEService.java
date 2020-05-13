@@ -164,4 +164,14 @@ public class DeviceAEService {
 
         return flagItem>=1;
     }
+
+    public boolean borrowUpdate(String department,String device_id){
+        return deviceDao.borrowDevice(department, device_id)>=1;
+    }
+
+    public Device getDeviceInfo(String device_id){
+        return deviceDao.getDeviceInfo(device_id);
+    }
+
+
 }
