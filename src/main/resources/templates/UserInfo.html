@@ -84,7 +84,7 @@
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form5').submit();" aria-expanded="false">
-                            <i class="mdi mdi-table"></i><span class="hide-menu">部门成员管理</span></a></li>
+                            <i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">部门成员管理</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -99,6 +99,36 @@
                     </div>
                     <div class="col-md-7 align-self-center">
                         <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px" color="azure" data-toggle="modal" data-target="#myAdd">添加部门用户</button>
+                        <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabelsAdd">输入设备信息</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form action="http://127.0.0.1:8080/AddUser" method="post" id="Add">
+                                                <input type="text" name="user_username" placeholder="输入用户名">
+                                                <input type="text" name="user_password" placeholder="输入密码">
+                                                <input type="text" name="user_phone" placeholder="输入电话">
+                                                <input type="text" name="user_address" placeholder="输入工作科室">
+                                                <input type="text" name="user_info" placeholder="输入备注">
+                                                <input type="hidden" name="user_company" th:value="${company.get(0).getSuper_company()}">
+                                                <input type="hidden" name="user_department" th:value="${company.get(0).getSuper_department()}">
+                                                <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                                                <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                                                <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('Add').submit();"style="color: azure">提交</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -161,6 +191,7 @@
                                             <th>用户工作科室</th>
                                             <th>用户备注</th>
                                             <th>所属部门</th>
+                                            <th>管理</th>
                                         </tr>
                                         </thead>
                                         <tbody>

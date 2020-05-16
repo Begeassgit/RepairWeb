@@ -1,5 +1,6 @@
 package com.repair.web.Controller.FE;
 
+import com.repair.web.Entity.User;
 import com.repair.web.Service.FE.DeviceService;
 import com.repair.web.Service.FE.LoginService;
 import com.repair.web.Service.FE.OrderService;
@@ -80,9 +81,18 @@ public class UserInfoController {
     }
 
     @RequestMapping(value = "/AddUser",method = RequestMethod.POST)
-    public ModelAndView addUser(String username,String company,String department,String id){
+    public ModelAndView addUser(String username, String company, String department, String user_username,String user_password,String user_phone,String user_company,
+                                String user_address,String user_info,String user_department){
+        User user=new User();
+        user.setUser_username(user_username);
+        user.setUser_password(user_password);
+        user.setUser_phone(user_phone);
+        user.setUser_company(user_company);
+        user.setUser_address(user_address);
+        user.setUser_info(user_info);
+        user.setUser_department(user_department);
         ModelAndView modelAndView=new ModelAndView();
-        if(!userService.delUser(id)){
+        if(!userService.addOne(user)){
             modelAndView.setViewName("Error");
         }
         Map<String, List> map=new HashMap<>();
