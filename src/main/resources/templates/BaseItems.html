@@ -91,6 +91,7 @@
                         <a href="http://127.0.0.1:8080/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
                         <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" data-toggle="modal" data-target="#myModal">上传耗材表</button>
                         <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputItem').submit();">下载耗材表</a>
+                        <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" data-toggle="modal" data-target="#myAdd">添加单种耗材</button>
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -125,13 +126,40 @@
                                         <div class="form-group">
                                             <form action="http://127.0.0.1:8080/UpdateItem" method="post" id="update">
                                                 <input type="text" name="department" placeholder="输入出借部门">
-                                                <input type="text" name="device_id" placeholder="输入耗材编号">
+                                                <input type="text" name="number" placeholder="输入数量">
+                                                <input type="text" name="item_id" placeholder="输入耗材编号">
                                                 <input type="hidden" name="company" th:value="${company.get(0)}">
                                             </form>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('update').submit();"style="color: azure">提交</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabelsAdd">输入耗材信息</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form action="http://127.0.0.1:8080/AddOneItems" method="post" id="Add">
+                                                <input type="text" name="items_id" placeholder="输入耗材编号">
+                                                <input type="text" name="name" placeholder="输入耗材名">
+                                                <input type="text" name="type" placeholder="输入耗材类型">
+                                                <input type="text" name="brand" placeholder="输入耗材品牌">
+                                                <input type="text" name="info" placeholder="备注">
+                                                <input type="text" name="count" placeholder="添加数量">
+                                                <input type="hidden" name="company" th:value="${company.get(0)}">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('Add').submit();"style="color: azure">提交</a>
                                     </div>
                                 </div>
                             </div>

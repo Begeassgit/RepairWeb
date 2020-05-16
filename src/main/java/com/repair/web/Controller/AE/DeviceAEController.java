@@ -1,10 +1,12 @@
 package com.repair.web.Controller.AE;
 
 import com.repair.web.Entity.Device;
+import com.repair.web.Entity.Items;
 import com.repair.web.Entity.TakeList;
 import com.repair.web.Service.AE.DeviceAEService;
 import com.repair.web.Service.AE.ItemsAEService;
 import com.repair.web.Service.AE.TakeListAEService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class DeviceAEController {
@@ -190,6 +191,7 @@ public class DeviceAEController {
         takeList.setTake_list_name(deviceAEService.getDeviceInfo(device_id).getDevice_name());
         takeList.setTake_list_department(department);
         takeList.setTake_list_company(company);
+        takeList.setTake_list_type("设备");
         takeListAEService.addTakeList(takeList);
         deviceAEService.borrowUpdate(department,device_id);
         ModelAndView modelAndView=new ModelAndView();
@@ -204,14 +206,16 @@ public class DeviceAEController {
     }
 
     @RequestMapping(value = "/UpdateItem",method = RequestMethod.POST)
-    public ModelAndView updateItem(String company,String department,String item_id){
+    public ModelAndView updateItem(String company,String department,String item_id,String number){
+        int num= Integer.parseInt(number);
         TakeList takeList=new TakeList();
         takeList.setTake_list_id(item_id);
         takeList.setTake_list_name(itemsAEService.getItemsInfo(item_id).getItems_name());
         takeList.setTake_list_department(department);
         takeList.setTake_list_company(company);
+        takeList.setTake_list_type("耗材");
         takeListAEService.addTakeList(takeList);
-        itemsAEService.borrowUpdate(department,item_id);
+        itemsAEService.borrowUpdate(department,item_id,num);
         ModelAndView modelAndView=new ModelAndView();
         Map<String,List> map=new HashMap<>();
         List list=new ArrayList();
@@ -221,6 +225,63 @@ public class DeviceAEController {
         modelAndView.setViewName("BaseItems");
         modelAndView.addAllObjects(map);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/AddOneDe",method = RequestMethod.POST)
+    public ModelAndView addOneDe(String device_id, String name, String type, String brand, String info, String company, String time) throws ParseException {
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date date=simpleDateFormat.parse(time);
+        Device device=new Device();
+        device.setDevice_department("");
+        device.setDevice_company(company);
+        device.setDevice_id(device_id);
+        device.setDevice_name(name);
+        device.setDevice_type(type);
+        device.setDevice_brand(brand);
+        device.setDevice_info(info);
+        device.setDevice_time(date);
+
+        ModelAndView modelAndView=new ModelAndView();
+        if(!deviceAEService.addOneDevice(device)){
+            modelAndView.setViewName("Error");
+            return modelAndView;
+        }
+        Map<String,List> map=new HashMap<>();
+        List list=new ArrayList();
+        list.add(0,company);
+        map.put("device",deviceAEService.companyBase(company));
+        map.put("company",list);
+        modelAndView.setViewName("Base");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/AddOneItems",method = RequestMethod.POST)
+    public ModelAndView addOneItems(String items_id, String name, String type, String brand, String info, String company, String count){
+        Items items=new Items();
+        items.setItems_department("");
+        items.setItems_company(company);
+        items.setItems_name(name);
+        items.setItems_id(items_id);
+        items.setItems_type(type);
+        items.setItems_count(Integer.parseInt(count));
+        items.setItems_brand(brand);
+        items.setItems_info(info);
+
+        ModelAndView modelAndView=new ModelAndView();
+        if(!itemsAEService.addOneItems(items)){
+            modelAndView.setViewName("Error");
+            return modelAndView;
+        }
+        Map<String,List> map=new HashMap<>();
+        List list=new ArrayList();
+        list.add(0,company);
+        map.put("items",itemsAEService.itemsForBase(company));
+        map.put("company",list);
+        modelAndView.setViewName("BaseItems");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+
     }
 
 }

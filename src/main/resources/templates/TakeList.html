@@ -77,36 +77,11 @@
                         <h3 class="text-themecolor">仓库表</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <form hidden id="outputDe" method="post" action="http://127.0.0.1:8080/OutputDe" >
+                        <form hidden id="outputTakeList" method="post" action="http://127.0.0.1:8080/OutputTakeList" >
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
                         <a href="http://127.0.0.1:8080/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
-                        <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px" color="azure" data-toggle="modal" data-target="#myModal">上传固定资产表</button>
-                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputDe').submit();">下载固定资产表</a>
-                        <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px" color="azure" data-toggle="modal" data-target="#myAdd">添加单个物品</button>
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">上传</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <form action="http://127.0.0.1:8080/UploadDe" method="post" id="fileUpload" enctype="multipart/form-data">
-                                                <label class="btn btn-primary">选择文件
-                                                    <input type="file" name="file" class="btn btn-primary" style="display: none">
-                                                    <input type="hidden" name="company" th:value="${company.get(0)}">
-                                                </label>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('fileUpload').submit();"style="color: azure">提交</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputTakeList').submit();">下载领用单</a>
                         <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -129,70 +104,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabelsAdd">输入设备信息</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <form action="http://127.0.0.1:8080/AddOneDe" method="post" id="Add">
-                                                <input type="text" name="device_id" placeholder="输入设备编号">
-                                                <input type="text" name="name" placeholder="输入设备名">
-                                                <input type="text" name="type" placeholder="输入设备类型">
-                                                <input type="text" name="brand" placeholder="输入设备品牌">
-                                                <input type="text" name="info" placeholder="备注">
-                                                <li>设备取得日期</li>
-                                                <input type="date" name="time">
-                                                <input type="hidden" name="company" th:value="${company.get(0)}">
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('Add').submit();"style="color: azure">提交</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">固定资产</h4>
+                                <h4 class="card-title">领用单</h4>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>设备类型</th>
-                                                <th>设备名字</th>
-                                                <th>设备信息</th>
-                                                <th>设备取得时间</th>
-                                                <th>使用部门</th>
-                                                <th>所属公司</th>
+                                                <th>类型</th>
+                                                <th>领取设备/耗材名</th>
+                                                <th>领取设备/耗材编号</th>
+                                                <th>领取部门</th>
+                                                <th>领取时间</th>
+                                                <th>公司</th>
                                                 <th>管理</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list:${device}">
-                                                <td th:text="${list.device_id}"></td>
-                                                <td th:text="${list.device_type}"></td>
-                                                <td th:text="${list.device_name}"></td>
-                                                <td th:text="${list.device_info}"></td>
-                                                <td th:text="${list.device_time}"></td>
-                                                <td th:text="${list.device_department}"></td>
-                                                <td th:text="${list.device_company}"></td>
+                                            <tr th:each="list:${takeList}">
+                                                <td th:text="${list.take_list_list_id}"></td>
+                                                <td th:text="${list.take_list_type}"></td>
+                                                <td th:text="${list.take_list_name}"></td>
+                                                <td th:text="${list.take_list_id}"></td>
+                                                <td th:text="${list.take_list_department}"></td>
+                                                <td th:text="${list.take_list_time}"></td>
+                                                <td th:text="${list.take_list_company}"></td>
                                                 <td>
-                                                    <form hidden th:id="${list.device_id}" method="post" action="http://127.0.0.1:8080/DelAE">
-                                                        <input type="hidden" name="device_id" th:value="${list.device_id}">
-                                                        <input type="hidden" name="company" th:value="${list.device_company}">
+                                                    <form hidden th:id="${list.take_list_list_id}" method="post" action="http://127.0.0.1:8080/DelList">
+                                                        <input type="hidden" name="list_id" th:value="${list.take_list_list_id}">
+                                                        <input type="hidden" name="company" th:value="${list.getTake_list_company()}">
                                                     </form>
-                                                    <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${list.device_id}]]).submit()">
-                                                    <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals">出借</button>
+                                                    <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${list.take_list_list_id}]]).submit()">
+                                                    <!--<button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals">出借</button>-->
                                                 </td>
                                             </tr>
                                         </tbody>

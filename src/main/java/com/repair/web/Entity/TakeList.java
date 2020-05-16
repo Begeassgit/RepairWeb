@@ -10,6 +10,7 @@ public class TakeList {
     private String take_list_department;
     private Date take_list_time;
     private String take_list_company;
+    private String take_list_type;
 
     public int getId() {
         return id;
@@ -65,5 +66,13 @@ public class TakeList {
 
     public void setTake_list_company(String take_list_company) {
         this.take_list_company = take_list_company;
+    }
+
+    public String getTake_list_type() {
+        return take_list_type;
+    }
+
+    public void setTake_list_type(String take_list_type) {
+        this.take_list_type = take_list_type;
     }
 }

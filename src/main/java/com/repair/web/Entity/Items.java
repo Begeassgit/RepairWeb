@@ -6,7 +6,7 @@ public class Items {
     private String items_name;
     private String items_type;
     private String items_brand;
-    private String items_count;
+    private int items_count;
     private String items_info;
     private String items_department;
     private String items_company;
@@ -43,14 +43,6 @@ public class Items {
         this.items_brand = items_brand;
     }
 
-    public String getItems_count() {
-        return items_count;
-    }
-
-    public void setItems_count(String items_count) {
-        this.items_count = items_count;
-    }
-
     public String getItems_info() {
         return items_info;
     }
@@ -81,5 +73,13 @@ public class Items {
 
     public void setItems_type(String items_type) {
         this.items_type = items_type;
+    }
+
+    public int getItems_count() {
+        return items_count;
+    }
+
+    public void setItems_count(int items_count) {
+        this.items_count = items_count;
     }
 }

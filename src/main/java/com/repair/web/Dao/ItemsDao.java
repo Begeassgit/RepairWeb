@@ -23,8 +23,8 @@ public interface ItemsDao {
             "#{items_department},#{items_company})")
     int addItems(Items items);
 
-    @Update("UPDATE maintenance_db.items_t SET（items_department=#{items_department}) WHERE (items_id=#{items_id})")
-    int updateBorrow(String items_id,String items_department);
+    @Update("UPDATE maintenance_db.items_t SET items_department=#{items_department},items_count=#{items_count} WHERE (items_id=#{items_id})")
+    int updateBorrow(String items_id,String items_department,int items_count);
 
     @Select("SELECT * FROM maintenance_db.items_t WHERE(items_id=#{items_id})")
     Items getItemsInfo(String items_id);

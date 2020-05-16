@@ -151,7 +151,7 @@ public class DeviceAEService {
                     items.setItems_name(dataFormatter.formatCellValue(xssfRow.getCell(1)));
                     items.setItems_type(dataFormatter.formatCellValue(xssfRow.getCell(2)));
                     items.setItems_brand(dataFormatter.formatCellValue(xssfRow.getCell(3)));
-                    items.setItems_count(dataFormatter.formatCellValue(xssfRow.getCell(4)));
+                    items.setItems_count(xssfRow.getCell(4).getColumnIndex());
                     items.setItems_info(dataFormatter.formatCellValue(xssfRow.getCell(5)));
                     items.setItems_company(dataFormatter.formatCellValue(xssfRow.getCell(6)));
                     items.setItems_department(dataFormatter.formatCellValue(xssfRow.getCell(7)));
@@ -171,6 +171,10 @@ public class DeviceAEService {
 
     public Device getDeviceInfo(String device_id){
         return deviceDao.getDeviceInfo(device_id);
+    }
+
+    public boolean addOneDevice(Device device){
+        return deviceDao.addDevice(device)>=1;
     }
 
 
