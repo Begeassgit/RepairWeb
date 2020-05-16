@@ -47,16 +47,16 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <form id="form2" method="post" action="http://127.0.0.1:8080/WelcomeBase">
-                            <input type="hidden" name="company" th:value="${admin.admin_company}">
+                            <input type="hidden" name="company" th:value="${companyName}">
                         </form>
                         <form id="form1" method="post" action="http://127.0.0.1:8080/Base">
-                            <input type="hidden" name="company" th:value="${admin.admin_company}">
+                            <input type="hidden" name="company" th:value="${companyName}">
                         </form>
                         <form id="form3" method="post" action="http://127.0.0.1:8080/BaseItem">
-                            <input type="hidden" name="company" th:value="${admin.admin_company}">
+                            <input type="hidden" name="company" th:value="${companyName}">
                         </form>
                         <form id="form4" method="post" action="http://127.0.0.1:8080/TakeList">
-                            <input type="hidden" name="company" th:value="${admin.admin_company}">
+                            <input type="hidden" name="company" th:value="${companyName}">
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
@@ -88,8 +88,52 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10" th:text="${admin.admin_company}"></h4>
+                                    <h4 class="card-title m-t-10">欢迎</h4>
                                 </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material">
+                                    <div class="form-group">
+                                        <label class="col-md-12">公司名</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${companyName}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">公司地址</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${address}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">主营业务</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${business}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">公司信息</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${info}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">联系电话</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${phone}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">创立时间</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${time}"></p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

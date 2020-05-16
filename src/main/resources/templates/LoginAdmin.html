@@ -4,7 +4,6 @@
         <link rel="stylesheet" href="Css\Login.css">
         <script>
            function adminloginSubmit(){
-               var admin_username=document.forms['form1']['admin_username'].value;
                var admin_password=document.forms['form1']['admin_password'].value;
 
                if(admin_password.length<6){
@@ -31,7 +30,9 @@
                     <label>密码</label>
                 </div>
                 <input type="submit" value="登录">
-            
+                <p style="color: azure;">首次使用本系统请先认证公司</p>
+                <a href="../RegisterAdmin">注册</a>
+                <a href="../RegisterCompany">认证公司</a>
             </form>
         </div>
     </body>

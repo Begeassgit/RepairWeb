@@ -7,7 +7,6 @@ public class User {
     private String user_phone;
     private String user_company;
     private String user_address;
-    private String user_business;
     private String user_info;
     private String user_department;
 
@@ -25,14 +24,6 @@ public class User {
 
     public void setUser_address(String user_address) {
         this.user_address = user_address;
-    }
-
-    public String getUser_business() {
-        return user_business;
-    }
-
-    public void setUser_business(String user_business) {
-        this.user_business = user_business;
     }
 
     public String getUser_info() {
@@ -75,4 +66,11 @@ public class User {
         this.user_phone = user_phone;
     }
 
+    public String getUser_department() {
+        return user_department;
+    }
+
+    public void setUser_department(String user_department) {
+        this.user_department = user_department;
+    }
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Css\Login.css">
+    </head>
+    <title>公司注册</title>
+    <body background="Image/h1.jpg">
+        <div class="box">
+            <h2>公司注册</h2>
+           <form name="form1"action="http://localhost:8080/RegisterComSubmit" method="POST">
+            <div class="inputBox">
+                <input type="text" name="company_name" required="">
+                <label>公司名</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="company_address" required="">
+                <label>公司地址</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="company_business" required="">
+                <label>公司营业范围</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="company_phone" required="">
+                <label>联系方式</label>
+            </div>
+            <div class="inputBox">
+                <p style="color: azure">成立日期</p>
+                <input type="date" name="company_time" required="" >
+            </div>
+               <div class="inputBox">
+                   <input type="text" name="company_info" required="">
+                   <label>公司信息</label>
+               </div>
+            <input type="submit" value="注册">
+           </form>
+        </div>
+    </body>
+</html>

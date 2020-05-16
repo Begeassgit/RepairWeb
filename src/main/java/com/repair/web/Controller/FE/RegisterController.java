@@ -16,14 +16,9 @@ public class RegisterController {
         this.registerService=registerService;
     }
 
-    @RequestMapping(value = "/RegisterUser",method = RequestMethod.GET)
-    public String registerUserPage(){
-        return "RegisterUser.html";
-    }
-
     @RequestMapping(value = "/RegisterSuper",method = RequestMethod.GET)
     public String registerSuperPage(){
-        return "RegisterSuper.html";
+        return "RegisterSuper";
     }
 
     @RequestMapping(value = "/submitUser",method = RequestMethod.POST)

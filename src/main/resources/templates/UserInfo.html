@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>设备管理</title>
+    <title>耗材管理</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- This page CSS -->
@@ -30,7 +30,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">设备管理</p>
+            <p class="loader__label">部门成员管理</p>
         </div>
     </div>
     <div id="main-wrapper">
@@ -69,6 +69,11 @@
                             <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
                         </form>
+                        <form id="form5" method="post" action="http://127.0.0.1:8080/UserInfo">
+                            <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                            <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                            <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                        </form>
 
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
@@ -78,6 +83,8 @@
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-table"></i><span class="hide-menu">订单管理</span></a></li>
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form5').submit();" aria-expanded="false">
+                            <i class="mdi mdi-table"></i><span class="hide-menu">部门成员管理</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -124,15 +131,11 @@
                                 <div id="visitor" style="height:250px; width:100%;"></div>
                                 <table class="table vm font-14">
                                     <tr>
-                                        <td class="b-0">维修中</td>
+                                        <td class="b-0">使用中</td>
                                         <td class="text-right font-medium b-0" th:text="${status.get(0)}"></td>
                                     </tr>
                                     <tr>
-                                        <td>正常使用</td>
-                                        <td class="text-right font-medium"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>需要置换</td>
+                                        <td>需要补充</td>
                                         <td class="text-right font-medium" th:text="${status.get(1)}"></td>
                                     </tr>
                                 </table>
@@ -145,53 +148,49 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
-                                    <div><h4 class="card-title"><span class="lstick"></span>当前设备数</h4></div>
+                                    <div><h4 class="card-title"><span class="lstick"></span>部门用户</h4></div>
                                 </div>
                                 <div class="table-responsive m-t-20">
                                     <table class="table vm no-th-brd no-wrap pro-of-month">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>设备名</th>
-                                                <th>设备类型</th>
-                                                <th>品牌</th>
-                                                <th>设备购入日期</th>
-                                                <th>部门</th>
-                                                <th>备注</th>
-                                                <th>所属公司</th>
-                                                <th>二维码</th>
-                                                <th>管理</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>用户名</th>
+                                            <th>用户电话</th>
+                                            <th>用户公司</th>
+                                            <th>用户工作科室</th>
+                                            <th>用户备注</th>
+                                            <th>所属部门</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list:${DeviceList}">
-                                                <td th:text="${list.getDevice_id()}"></td>
-                                                <td th:text="${list.getDevice_name()}"></td>
-                                                <td th:text="${list.getDevice_type()}"></td>
-                                                <td th:text="${list.getDevice_brand()}"></td>
-                                                <td th:text="${list.getDevice_time()}"></td>
-                                                <td th:text="${list.getDevice_department()}"></td>
-                                                <td th:text="${list.getDevice_info()}"></td>
-                                                <td th:text="${list.getDevice_company()}"></td>
-                                                <td>
-                                                    <form hidden th:id="${list.getDevice_id()}" method="post" action="http://127.0.0.1:8080/OutputQrCode">
-                                                        <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                                                        <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
-                                                        <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
-                                                        <input type="hidden" name="device_id" th:value="${list.getDevice_id()}">
-                                                    </form>
-                                                    <input type="submit" th:onclick="document.getElementById([[${list.getDevice_id()}]]).submit()" value="下载二维码" class="btn btn-success">
-                                                </td>
-                                                <td>
-                                                    <form hidden th:id="${list.getDevice_id()+'de'}" method="post" action="http://127.0.0.1:8080/DelDevice">
-                                                        <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
-                                                        <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
-                                                        <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
-                                                        <input type="hidden" name="device_id" th:value="${list.getDevice_id()}">
-                                                    </form>
-                                                    <input type="submit" th:onclick="document.getElementById([[${list.getDevice_id()+'de'}]]).submit()" value="退还设备" class="btn btn-danger">
-                                                </td>
-                                            </tr>
+                                        <tr th:each="listU:${UserInfo}">
+                                            <td th:text="${listU.getUser_id()}"></td>
+                                            <td th:text="${listU.getUser_username()}"></td>
+                                            <td th:text="${listU.getUser_phone()}"></td>
+                                            <td th:text="${listU.getUser_company()}"></td>
+                                            <td th:text="${listU.getUser_address()}"></td>
+                                            <td th:text="${listU.getUser_info()}"></td>
+                                            <td th:text="${listU.getUser_department()}"></td>
+                                            <td>
+                                                <form hidden th:id="${listU.getUser_id()}" method="post" action="http://127.0.0.1:8080/RestUserPassword">
+                                                    <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                                                    <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                                                    <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                                                    <input type="hidden" name="id" th:value="${listU.getUser_id()}">
+                                                </form>
+                                                <input type="submit" th:onclick="document.getElementById([[${listU.getUser_id()}]]).submit()" value="重置密码" class="btn btn-primary">
+                                            </td>
+                                            <td>
+                                                <form hidden th:id="${listU.getUser_id()+'del'}" method="post" action="http://127.0.0.1:8080/DelUser">
+                                                    <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                                                    <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
+                                                    <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
+                                                    <input type="hidden" name="id" th:value="${listU.getUser_id()}">
+                                                </form>
+                                                <input type="submit" th:onclick="document.getElementById([[${listU.getUser_id()+'del'}]]).submit()" value="删除用户" class="btn btn-danger">
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -201,7 +200,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap popper Core JavaScript -->

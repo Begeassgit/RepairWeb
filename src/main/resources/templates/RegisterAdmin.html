@@ -4,15 +4,15 @@
         <link rel="stylesheet" href="Css\Login.css">
         <script>
             function checkPassword(){
-                var user_password=document.forms['form1']['user_password'].value;
-                var user_password2=document.forms['form1']['user_password2'].value;
+                var password=document.forms['form1']['admin_password'].value;
+                var password2=document.forms['form1']['admin_password2'].value;
 
-                if(user_password!=user_password2){
+                if(password!==password2){
                     alert("2次输入的密码不一致");
                     return false;
                 }
 
-                if(user_password.length<6){
+                if(password.length<6){
                     alert("密码至少6位");
                     return false;
                 }
@@ -21,26 +21,26 @@
             }
         </script>
     </head>
-    <title>公司报修端注册</title>
+    <title>仓库员主管注册</title>
     <body background="Image/h1.jpg">
         <div class="box">
-            <h2>公司报修端注册</h2>
-           <form name="form1"action="http://localhost:8080/submitUser" method="POST" onsubmit="checkPassword()">
+            <h2>仓库主管注册</h2>
+           <form name="form1"action="http://localhost:8080/RegisterAdSubmit" method="POST" onsubmit="checkPassword()">
             <div class="inputBox">
-                <input type="text" name="user_username" required="">
-                <label>公司名</label>
+                <input type="text" name="admin_username" required="">
+                <label>用户名</label>
             </div>
             <div class="inputBox">
-                <input type="password" name="user_password" required="">
+                <input type="password" name="admin_password" required="">
                 <label>密码</label>
             </div>
             <div class="inputBox">
-                <input type="password" name="user_password2" required="">
+                <input type="password" name="admin_password2" required="">
                 <label>确认密码</label>
             </div>
             <div class="inputBox">
-                <input type="text" name="user_phone" required="">
-                <label>联系方式</label>
+                <input type="text" name="admin_company" required="">
+                <label>所属公司名称</label>
             </div>
             <input type="submit" value="注册">
            </form>
