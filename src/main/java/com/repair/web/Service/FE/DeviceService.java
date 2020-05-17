@@ -41,4 +41,8 @@ public class DeviceService {
         String device_department="";
         return deviceDao.returnDevice(device_department,device_id)>=1;
     }
+
+    public List<Device> findDevice(Device device){
+        return deviceDao.findDevice(device);
+    }
 }

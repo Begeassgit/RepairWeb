@@ -4,11 +4,13 @@ import com.repair.web.Entity.Device;
 import com.repair.web.Service.FE.DeviceService;
 import com.repair.web.Service.FE.LoginService;
 import com.repair.web.Service.FE.OrderService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +87,27 @@ public class DeviceController {
         map.put("username",user_username);
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("InputDevice");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/FindSubmit",method = RequestMethod.POST)
+    public ModelAndView findSubmit(String device_id,String device_name,String device_brand,String device_type,
+                                   String device_department,String device_company,String username){
+        ModelAndView modelAndView=new ModelAndView();
+        List<String> list=new ArrayList();
+        list.add(0,username);
+        Map<String,List>map=new HashMap<>();
+        Device device=new Device();
+        device.setDevice_id(device_id);
+        device.setDevice_name(device_name);
+        device.setDevice_brand(device_brand);
+        device.setDevice_type(device_type);
+        device.setDevice_department(device_department);
+        device.setDevice_company(device_company);
+        map.put("Result",deviceService.findDevice(device));
+        map.put("user",list);
+        modelAndView.setViewName("DeviceResult");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }

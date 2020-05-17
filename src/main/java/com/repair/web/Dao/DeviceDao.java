@@ -36,4 +36,8 @@ public interface DeviceDao {
 
     @Update("UPDATE maintenance_db.device_t SET device_department=#{device_department} WHERE (device_id=#{device_id})")
     int borrowDevice(String device_department,String device_id);
+
+    @Select("SELECT * FROM maintenance_db.device_t WHERE ((device_id=#{device_id} OR device_name=#{device_name}" +
+            "OR device_brand=#{device_brand} OR device_type=#{device_type}) AND (device_company=#{device_company} AND device_department=#{device_department}))")
+    List<Device> findDevice(Device device);
 }
