@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Admin Pro Admin Template - The Ultimate Bootstrap 4 Admin Template</title>
+    <title>报修系统-首页</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -43,8 +43,8 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/AddOrder" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/AddOrder" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">扫描报修</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">用户资料</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -66,7 +66,7 @@
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150" />
                                     <h4 class="card-title m-t-10" th:text="${user.user_username}"></h4>
-                                    <h6 class="card-subtitle" th:text="${user.user_company}"></h6>
+                                    <h6 class="card-subtitle" th:text="${user.user_company}+' '+${user.user_department}"></h6>
                                 </center>
                             </div>
                         </div>
@@ -79,49 +79,28 @@
                                 <form class="form-horizontal form-material">
                                     <div class="form-group">
                                         <div style="text-align: center">
-                                            <button class="btn btn-success">扫描</button>
+                                            <form  id="form1" action="http://127.0.0.1:8080/123" method="post">
+                                                <input type="hidden" name="user_username" th:value="${user.user_username}">
+                                            </form>
+                                            <form  id="form2" action="http://127.0.0.1:8080/FindMyDevice" method="post">
+                                                <input type="hidden" name="user_username" th:value="${user.user_username}">
+                                                <input type="hidden" name="user_company" th:value="${user.user_company}">
+                                                <input type="hidden" name="user_department" th:value="${user.user_department}">
+                                            </form>
+                                            <form  id="form3" action="http://127.0.0.1:8080/123" method="post">
+                                                <input type="hidden" name="user_username" th:value="${user.user_username}">
+                                            </form>
+                                            <a onclick="document.getElementById('form1').submit();" class="btn btn-success" style="color: azure">扫描并识别二维码</a>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">输入设备二维码信息</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
+                                        <div style="text-align: center">
+                                            <a onclick="document.getElementById('form2').submit();" class="btn btn-primary" style="color: azure">键入信息查找设备</a>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
-                                        <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Phone No</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Message</label>
-                                        <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-12">Select Country</label>
-                                        <div class="col-sm-12">
-                                            <select class="form-control form-control-line">
-                                                <option>London</option>
-                                                <option>India</option>
-                                                <option>Usa</option>
-                                                <option>Canada</option>
-                                                <option>Thailand</option>
-                                            </select>
+                                        <div style="text-align: center">
+                                            <a onclick="document.getElementById('form3').submit();" class="btn btn-info" style="color: azure">查看维护申请记录</a>
                                         </div>
                                     </div>
                                 </form>

@@ -76,4 +76,16 @@ public class DeviceController {
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/FindMyDevice",method = RequestMethod.POST)
+    public ModelAndView findPage(String user_username,String user_company,String user_department){
+        Map<String,String>map =new HashMap<>();
+        map.put("company",user_company);
+        map.put("department",user_department);
+        map.put("username",user_username);
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("InputDevice");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
 }
