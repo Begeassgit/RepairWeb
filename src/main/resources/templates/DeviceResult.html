@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>设备管理</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="Css/style.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="Css/pages/dashboard.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">查询结果</p>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">设备</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                    </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div><h4 class="card-title"><span class="lstick"></span>结果</h4></div>
+                                </div>
+                                <div class="table-responsive m-t-20">
+                                    <table class="table vm no-th-brd no-wrap pro-of-month">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>设备名</th>
+                                                <th>设备类型</th>
+                                                <th>品牌</th>
+                                                <th>设备购入日期</th>
+                                                <th>部门</th>
+                                                <th>备注</th>
+                                                <th>所属公司</th>
+                                                <th>申报维护</th>
+                                                <th>管理</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="list:${Result}">
+                                                <td th:text="${list.getDevice_id()}"></td>
+                                                <td th:text="${list.getDevice_name()}"></td>
+                                                <td th:text="${list.getDevice_type()}"></td>
+                                                <td th:text="${list.getDevice_brand()}"></td>
+                                                <td th:text="${list.getDevice_time()}"></td>
+                                                <td th:text="${list.getDevice_department()}"></td>
+                                                <td th:text="${list.getDevice_info()}"></td>
+                                                <td th:text="${list.getDevice_company()}"></td>
+                                                <td>
+                                                    <form hidden th:id="${list.getDevice_id()}" method="post" action="http://127.0.0.1:8080/AddSumbit">
+                                                        <input type="hidden" name="username" th:value="${user.get(0)}">
+                                                        <input type="hidden" name="company" th:value="${list.getDevice_company()}">
+                                                        <input type="hidden" name="department" th:value="${list.getDevice_department()}">
+                                                        <input type="hidden" name="device_id" th:value="${list.getDevice_id()}">
+                                                    </form>
+                                                    <input type="submit" th:onclick="document.getElementById([[${list.getDevice_id()}]]).submit()" value="提交维护" class="btn btn-success">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="Js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="Js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="Js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="Js/custom.min.js"></script>
+    <script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="assets/plugins/d3/d3.min.js"></script>
+    <script src="assets/plugins/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="Js/dashboard.js"></script>
+    <script>
+
+    </script>
+
+</body>
+</html>
