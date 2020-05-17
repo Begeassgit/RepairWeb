@@ -47,4 +47,8 @@ public class OrderService {
     public List<Order> getMyOrder(String company,String department,String submitUser){
         return orderDao.getMyOrder(company,department,submitUser);
     }
+
+    public boolean delOneOrder(String user,String department,String company,String order_id){
+        return orderDao.delOneOrder(company,department,user,order_id)>=1;
+    }
 }

@@ -77,11 +77,11 @@
                                                 <td th:text="${list.order_department}"></td>
                                                 <td th:text="${list.order_company}"></td>
                                                 <td>
-                                                    <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/del">
+                                                    <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/DelMyOrder">
                                                         <input type="hidden" name="order_id" th:value="${list.order_id}">
-                                                        <input type="hidden" name="order_company" th:value="${list.getOrder_company()}">
+                                                        <input type="hidden" name="company" th:value="${list.getOrder_company()}">
                                                         <input type="hidden" name="username" th:value="${username.get(0)}">
-                                                        <input type="hidden" name="order_department" th:value="${list.getOrder_department()}">
+                                                        <input type="hidden" name="department" th:value="${list.getOrder_department()}">
                                                     </form>
                                                     <input class="btn btn-danger" type="submit" value="撤回" th:onclick="document.getElementById([[${list.order_id}]]).submit()">
                                                 </td>

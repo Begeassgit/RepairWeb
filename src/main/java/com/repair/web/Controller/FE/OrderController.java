@@ -74,9 +74,21 @@ public class OrderController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/DelOrder",method = RequestMethod.POST)
+    @RequestMapping(value = "/DelMyOrder",method = RequestMethod.POST)
     public ModelAndView delOrder(String username,String department,String company,String order_id){
         ModelAndView modelAndView=new ModelAndView();
+        if(!orderService.delOneOrder(username, department, company, order_id)){
+            modelAndView.setViewName("Error");
+        }
+        Map<String,List>map=new HashMap<>();
+        List<String> list=new ArrayList<>();
+        list.add(0,username);
+        list.add(1,company);
+        list.add(2,department);
+        map.put("MyOrder",orderService.getMyOrder(company, department, username));
+        map.put("username",list);
+        modelAndView.setViewName("MyOrder");
+        modelAndView.addAllObjects(map);
         return modelAndView;
     }
 
@@ -94,6 +106,5 @@ public class OrderController {
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
-
 
 }

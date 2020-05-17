@@ -48,6 +48,29 @@
                     </div>
                     <div class="col-md-7 align-self-center">
                         <a href="http://127.0.0.1:8080/Login" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabels">输入基本情况</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form hidden id="add" method="post" action="http://127.0.0.1:8080/AddSumbit">
+                                                <input type="text" name="username" th:value="${user.get(0)}">
+                                                <input type="text" name="company">
+                                                <input type="text" name="department">
+                                                <input type="text" name="device_id">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('add').submit();" style="color: azure">提交</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -81,13 +104,7 @@
                                                 <td th:text="${list.getDevice_info()}"></td>
                                                 <td th:text="${list.getDevice_company()}"></td>
                                                 <td>
-                                                    <form hidden th:id="${list.getDevice_id()}" method="post" action="http://127.0.0.1:8080/AddSumbit">
-                                                        <input type="hidden" name="username" th:value="${user.get(0)}">
-                                                        <input type="hidden" name="company" th:value="${list.getDevice_company()}">
-                                                        <input type="hidden" name="department" th:value="${list.getDevice_department()}">
-                                                        <input type="hidden" name="device_id" th:value="${list.getDevice_id()}">
-                                                    </form>
-                                                    <input type="submit" th:onclick="document.getElementById([[${list.getDevice_id()}]]).submit()" value="提交维护" class="btn btn-success">
+                                                    <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals">提交维护</button>
                                                 </td>
                                             </tr>
                                         </tbody>

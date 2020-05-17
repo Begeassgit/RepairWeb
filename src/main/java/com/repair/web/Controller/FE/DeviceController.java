@@ -113,4 +113,27 @@ public class DeviceController {
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/AddSubmit",method = RequestMethod.POST)
+    public ModelAndView addOrder(String device_id,String device_name,String device_brand,String device_type,
+                                 String device_department,String device_company,String username){
+        ModelAndView modelAndView=new ModelAndView();
+        List<String> list=new ArrayList();
+        list.add(0,username);
+        list.add(1,device_company);
+        list.add(2,device_department);
+        Map<String,List>map=new HashMap<>();
+        Device device=new Device();
+        device.setDevice_id(device_id);
+        device.setDevice_name(device_name);
+        device.setDevice_brand(device_brand);
+        device.setDevice_type(device_type);
+        device.setDevice_department(device_department);
+        device.setDevice_company(device_company);
+        map.put("Result",deviceService.findDevice(device));
+        map.put("user",list);
+        modelAndView.setViewName("DeviceResult");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
 }
