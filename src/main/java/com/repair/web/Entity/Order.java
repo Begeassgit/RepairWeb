@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Order {
     private int id;
+    private String order_submitUser;
     private String order_id;
     private Date order_time;
     private String order_address;
@@ -16,6 +17,14 @@ public class Order {
 
     public int getId() {
         return id;
+    }
+
+    public String getOrder_submitUser() {
+        return order_submitUser;
+    }
+
+    public void setOrder_submitUser(String order_submitUser) {
+        this.order_submitUser = order_submitUser;
     }
 
     public void setId(int id) {
