@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>订单管理</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="Css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border fix-sidebar">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label"></p>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">列表</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">维修订单表</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>设备类型</th>
+                                                <th>设备名字</th>
+                                                <th>维修内容</th>
+                                                <th>订单地址</th>
+                                                <th>订单时间</th>
+                                                <th>订单状态</th>
+                                                <th>提交部门</th>
+                                                <th>所属公司</th>
+                                                <th>审批</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="list:${List}">
+                                                <td th:text="${list.order_id}"></td>
+                                                <td th:text="${list.order_deviceType}"></td>
+                                                <td th:text="${list.order_deviceName}"></td>
+                                                <td th:text="${list.order_info}"></td>
+                                                <td th:text="${list.order_address}"></td>
+                                                <td th:text="${list.order_time}"></td>
+                                                <td th:text="${list.order_status}"></td>
+                                                <td th:text="${list.order_department}"></td>
+                                                <td th:text="${list.order_company}"></td>
+                                                <td>
+                                                    <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
+                                                        <input type="hidden" name="order_id" th:value="${list.order_id}">
+                                                        <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
+                                                        <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
+                                                        <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
+                                                    </form>
+                                                    <input class="btn btn-success" type="submit" value="通过" th:onclick="document.getElementById([[${list.order_id}]]).submit()">
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="Js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="Js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="Js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="Js/custom.min.js"></script>
+
+</body>
+
+</html>
