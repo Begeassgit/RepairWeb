@@ -3,11 +3,14 @@ package com.repair.web.Controller.FE;
 import com.repair.web.Entity.Order;
 import com.repair.web.Service.FE.LoginService;
 import com.repair.web.Service.FE.OrderService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +70,27 @@ public class OrderController {
         map.put("company",loginService.SuperInfoList(username,order_company,order_department));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("OrderInfo");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/DelOrder",method = RequestMethod.POST)
+    public ModelAndView delOrder(String username,String department,String company,String order_id){
+        ModelAndView modelAndView=new ModelAndView();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/GetMyOrder",method = RequestMethod.POST)
+    public ModelAndView myOrder(String username,String department,String company){
+        Map<String,List>map=new HashMap<>();
+        List<String> list=new ArrayList<>();
+        list.add(0,username);
+        list.add(1,company);
+        list.add(2,department);
+        map.put("MyOrder",orderService.getMyOrder(company, department, username));
+        map.put("username",list);
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("MyOrder");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }

@@ -87,8 +87,10 @@
                                                 <input type="hidden" name="user_company" th:value="${user.user_company}">
                                                 <input type="hidden" name="user_department" th:value="${user.user_department}">
                                             </form>
-                                            <form  id="form3" action="http://127.0.0.1:8080/123" method="post">
-                                                <input type="hidden" name="user_username" th:value="${user.user_username}">
+                                            <form  id="form3" action="http://127.0.0.1:8080/GetMyOrder" method="post">
+                                                <input type="hidden" name="username" th:value="${user.user_username}">
+                                                <input type="hidden" name="company" th:value="${user.user_company}">
+                                                <input type="hidden" name="department" th:value="${user.user_department}">
                                             </form>
                                             <a onclick="document.getElementById('form1').submit();" class="btn btn-success" style="color: azure">扫描并识别二维码</a>
                                         </div>

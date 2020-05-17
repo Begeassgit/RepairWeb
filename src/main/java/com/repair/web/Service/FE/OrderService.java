@@ -43,4 +43,8 @@ public class OrderService {
         list.add(1,orderDao.getSwitchSum(device_company,"需置换",order_department));
         return list;
     }
+
+    public List<Order> getMyOrder(String company,String department,String submitUser){
+        return orderDao.getMyOrder(company,department,submitUser);
+    }
 }

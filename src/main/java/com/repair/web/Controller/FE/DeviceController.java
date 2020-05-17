@@ -97,6 +97,8 @@ public class DeviceController {
         ModelAndView modelAndView=new ModelAndView();
         List<String> list=new ArrayList();
         list.add(0,username);
+        list.add(1,device_company);
+        list.add(2,device_department);
         Map<String,List>map=new HashMap<>();
         Device device=new Device();
         device.setDevice_id(device_id);

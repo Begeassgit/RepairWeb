@@ -23,7 +23,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <p class="loader__label"></p>
         </div>
     </div>
     <div id="main-wrapper">
@@ -113,6 +113,7 @@
                                                 <th>订单状态</th>
                                                 <th>提交部门</th>
                                                 <th>所属公司</th>
+                                                <th>提交用户</th>
                                                 <th>审批</th>
                                             </tr>
                                         </thead>
@@ -127,6 +128,7 @@
                                                 <td th:text="${list.order_status}"></td>
                                                 <td th:text="${list.order_department}"></td>
                                                 <td th:text="${list.order_company}"></td>
+                                                <td th:text="${list.order_submitUser}"></td>
                                                 <td>
                                                     <form hidden th:id="${list.order_id}" method="post" action="http://127.0.0.1:8080/pOrder">
                                                         <input type="hidden" name="order_id" th:value="${list.order_id}">
