@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>扫描</title>
+</head>
+<body>
+<style>
+    canvas {
+        display: none;
+    }
+    hr {
+        margin-top: 32px;
+    }
+    div {
+        margin-bottom: 16px;
+    }
+</style>
+<h4 style="text-align: center">扫描</h4>
+<div style="text-align: center">
+    <video muted playsinline id="qr-video" class="col-md-auto"></video>
+</div>
+<div style="text-align: center">
+    <select id="inversion-mode-select">
+        <option value="original">扫描普通二维码</option>
+        <option value="invert">扫描反色二维码</option>
+        <option value="both">全部</option>
+    </select>
+    <br>
+</div>
+<div style="text-align: center">
+    <b>扫描时间</b>
+    <span id="cam-qr-result-timestamp"></span>
+    <br>
+    <form action="/FindQr" method="post" id="info">
+        <input type="hidden" name="company" th:value="${company}">
+        <input type="hidden" name="department" th:value="${department}">
+        <input type="hidden" name="username" th:value="${username}">
+        <input type="hidden" name="device_id" id="device_id" value="">
+    </form>
+    <form action="/Home" method="post" id="form1">
+        <input type="hidden" name="user_company" th:value="${company}">
+        <input type="hidden" name="user_department" th:value="${department}">
+        <input type="hidden" name="user" th:value="${username}">
+    </form>
+    <a class="btn btn-success" onclick="document.getElementById('info').submit();" style="color: azure;">提交</a>
+    <a class="btn btn-danger" onclick="document.getElementById('form1').submit();" style="color: azure;">返回</a>
+</div>
+
+<script type="module">
+    import QrScanner from "/Js/qr-scanner.min.js";
+    QrScanner.WORKER_PATH = '/Js/qr-scanner-worker.min.js';
+    const video = document.getElementById('qr-video');
+    const camQrResult = document.getElementById('device_id');
+    const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+    function setResult(inputs, result) {
+        inputs.value = result;
+        camQrResultTimestamp.textContent = new Date().toString();
+    }
+    const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+    scanner.start();
+
+    document.getElementById('inversion-mode-select').addEventListener('change', event => {
+        scanner.setInversionMode(event.target.value);
+    });
+</script>
+</body>
+</html>

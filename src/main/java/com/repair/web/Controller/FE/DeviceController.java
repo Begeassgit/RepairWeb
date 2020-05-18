@@ -136,4 +136,19 @@ public class DeviceController {
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/FindQr",method = RequestMethod.POST)
+    public ModelAndView findQr(String device_id,String device_department,String device_company,String username){
+        ModelAndView modelAndView=new ModelAndView();
+        List<String> list=new ArrayList();
+        list.add(0,username);
+        list.add(1,device_company);
+        list.add(2,device_department);
+        Map<String,List>map=new HashMap<>();
+        map.put("Result",deviceService.findDeviceQr(device_id));
+        map.put("user",list);
+        modelAndView.setViewName("DeviceResultQr");
+        modelAndView.addAllObjects(map);
+        return modelAndView;
+    }
 }

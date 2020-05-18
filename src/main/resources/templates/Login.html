@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="Css\Login.css">
+        <link rel="stylesheet" href="Css/Login.css">
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script>
            function loginSubmit(){
                var user_password=document.forms['form1']['user_password'].value;
@@ -14,14 +15,15 @@
                return true;
            }
         </script>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
     <title>
         报修系统
     </title>
-    <body background="Image\h1.jpg">
+    <body background="Image/h1.jpg">
         <div class="box">
             <h2>登录</h2>
-            <form name="form1" action="http://localhost:8080/checkLogin" method="POST" onsubmit="return loginSubmit();">
+            <form name="form1" action="/checkLogin" method="POST" onsubmit="return loginSubmit();">
                 <div class="inputBox">
                     <input type="text" name="user_username" required="">
                     <label>用户名</label>

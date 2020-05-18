@@ -45,4 +45,8 @@ public class DeviceService {
     public List<Device> findDevice(Device device){
         return deviceDao.findDevice(device);
     }
+
+    public List<Device> findDeviceQr(String device_id){
+        return deviceDao.findDeviceQr(device_id);
+    }
 }

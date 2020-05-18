@@ -40,16 +40,16 @@
             <div class="scroll-sidebar">
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form2" method="post" action="http://127.0.0.1:8080/WelcomeBase">
+                        <form id="form2" method="post" action="/WelcomeBase">
                            <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/Base">
+                        <form id="form1" method="post" action="/Base">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
-                        <form id="form3" method="post" action="http://127.0.0.1:8080/BaseItem">
+                        <form id="form3" method="post" action="/BaseItem">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
-                        <form id="form4" method="post" action="http://127.0.0.1:8080/TakeList">
+                        <form id="form4" method="post" action="/TakeList">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
@@ -71,10 +71,10 @@
                         <h3 class="text-themecolor">仓库表</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <form hidden id="outputTakeList" method="post" action="http://127.0.0.1:8080/OutputTakeList" >
+                        <form hidden id="outputTakeList" method="post" action="/OutputTakeList" >
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
-                        <a href="http://127.0.0.1:8080/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
+                        <a href="/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
                         <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputTakeList').submit();">下载领用单</a>
                         <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
                             <div class="modal-dialog">
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <form action="http://127.0.0.1:8080/UpdateDe" method="post" id="update">
+                                            <form action="/UpdateDe" method="post" id="update">
                                                 <input type="text" name="department" placeholder="输入出借部门">
                                                 <input type="text" name="device_id" placeholder="输入设备编号">
                                                 <input type="hidden" name="company" th:value="${company.get(0)}">
@@ -129,7 +129,7 @@
                                                 <td th:text="${list.take_list_time}"></td>
                                                 <td th:text="${list.take_list_company}"></td>
                                                 <td>
-                                                    <form hidden th:id="${list.take_list_list_id}" method="post" action="http://127.0.0.1:8080/DelList">
+                                                    <form hidden th:id="${list.take_list_list_id}" method="post" action="/DelList">
                                                         <input type="hidden" name="list_id" th:value="${list.take_list_list_id}">
                                                         <input type="hidden" name="company" th:value="${list.getTake_list_company()}">
                                                     </form>

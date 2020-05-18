@@ -43,7 +43,12 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="http://127.0.0.1:8080/AddOrder" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">扫描报修</span></a></li>
+                        <form action="/Home" method="post" id="self">
+                            <input type="hidden" name="user" th:value="${user.user_username}">
+                            <input type="hidden" name="user_department" th:value="${user.user_department}">
+                            <input type="hidden" name="user_company" th:value="${user.user_company}">
+                        </form>
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false" onclick="document.getElementById('self').submit();"><i class="mdi mdi-barcode"></i><span class="hide-menu">扫描报修</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">用户资料</span></a></li>
                     </ul>
                 </nav>
@@ -56,7 +61,7 @@
                         <h3 class="text-themecolor">欢迎使用</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="#" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <a href="/Login" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                     </div>
                 </div>
                 <div class="row">
@@ -76,22 +81,26 @@
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-body">
+                                <div style="text-align: center">
+                                    <form  id="form1" action="/Scan" method="post">
+                                        <input type="hidden" name="user_username" th:value="${user.user_username}">
+                                        <input type="hidden" name="user_company" th:value="${user.user_company}">
+                                        <input type="hidden" name="user_department" th:value="${user.user_department}">
+                                    </form>
+                                    <form  id="form2" action="/FindMyDevice" method="post">
+                                        <input type="hidden" name="user_username" th:value="${user.user_username}">
+                                        <input type="hidden" name="user_company" th:value="${user.user_company}">
+                                        <input type="hidden" name="user_department" th:value="${user.user_department}">
+                                    </form>
+                                    <form  id="form3" action="/GetMyOrder" method="post">
+                                        <input type="hidden" name="username" th:value="${user.user_username}">
+                                        <input type="hidden" name="company" th:value="${user.user_company}">
+                                        <input type="hidden" name="department" th:value="${user.user_department}">
+                                    </form>
+                                </div>
                                 <form class="form-horizontal form-material">
                                     <div class="form-group">
                                         <div style="text-align: center">
-                                            <form  id="form1" action="http://127.0.0.1:8080/123" method="post">
-                                                <input type="hidden" name="user_username" th:value="${user.user_username}">
-                                            </form>
-                                            <form  id="form2" action="http://127.0.0.1:8080/FindMyDevice" method="post">
-                                                <input type="hidden" name="user_username" th:value="${user.user_username}">
-                                                <input type="hidden" name="user_company" th:value="${user.user_company}">
-                                                <input type="hidden" name="user_department" th:value="${user.user_department}">
-                                            </form>
-                                            <form  id="form3" action="http://127.0.0.1:8080/GetMyOrder" method="post">
-                                                <input type="hidden" name="username" th:value="${user.user_username}">
-                                                <input type="hidden" name="company" th:value="${user.user_company}">
-                                                <input type="hidden" name="department" th:value="${user.user_department}">
-                                            </form>
                                             <a onclick="document.getElementById('form1').submit();" class="btn btn-success" style="color: azure">扫描并识别二维码</a>
                                         </div>
                                     </div>

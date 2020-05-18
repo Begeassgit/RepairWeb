@@ -38,12 +38,12 @@
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="back" action="http://127.0.0.1:8080/Home" method="post">
+                                <form id="back" action="/Home" method="post">
                                     <input type="hidden" name="user" th:value="${username}">
                                     <input type="hidden" name="user_department" th:value="${department}">
                                     <input type="hidden" name="user_company" th:value="${company}">
                                 </form>
-                                <form class="form-horizontal form-material" id="infos" action="http://127.0.0.1:8080/FindSubmit" method="post">
+                                <form class="form-horizontal form-material" id="infos" action="/FindSubmit" method="post">
                                     <div class="form-group">
                                         <label class="col-md-12">设备ID</label>
                                         <div class="col-md-12">

@@ -49,27 +49,27 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form1" method="post" action="http://127.0.0.1:8080/ComInfo">
+                        <form id="form1" method="post" action="/ComInfo">
                             <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
                             <input type="hidden" name="super_company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="super_department" th:value="${company.get(0).getSuper_department()}">
                         </form>
-                        <form id="form2" method="post" action="http://127.0.0.1:8080/myOrder">
+                        <form id="form2" method="post" action="/myOrder">
                             <input type="hidden" name="super_username" th:value="${company.get(0).getSuper_username()}">
                             <input type="hidden" name="order_company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="order_department" th:value="${company.get(0).getSuper_department()}">
                         </form>
-                        <form id="form3" method="post" action="http://127.0.0.1:8080/DeviceInfo">
+                        <form id="form3" method="post" action="/DeviceInfo">
                             <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
                             <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
                         </form>
-                        <form id="form4" method="post" action="http://127.0.0.1:8080/ItemsInfo">
+                        <form id="form4" method="post" action="/ItemsInfo">
                             <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
                             <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
                         </form>
-                        <form id="form5" method="post" action="http://127.0.0.1:8080/UserInfo">
+                        <form id="form5" method="post" action="/UserInfo">
                             <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
                             <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                             <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
@@ -98,7 +98,7 @@
                         <h3 class="text-themecolor">控制板</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="http://127.0.0.1:8080/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <a href="/SupervisorLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
                         <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px" color="azure" data-toggle="modal" data-target="#myAdd">添加部门用户</button>
                         <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
                             <div class="modal-dialog">
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <form action="http://127.0.0.1:8080/AddUser" method="post" id="Add">
+                                            <form action="/AddUser" method="post" id="Add">
                                                 <input type="text" name="user_username" placeholder="输入用户名">
                                                 <input type="text" name="user_password" placeholder="输入密码">
                                                 <input type="text" name="user_phone" placeholder="输入电话">
@@ -204,7 +204,7 @@
                                             <td th:text="${listU.getUser_info()}"></td>
                                             <td th:text="${listU.getUser_department()}"></td>
                                             <td>
-                                                <form hidden th:id="${listU.getUser_id()}" method="post" action="http://127.0.0.1:8080/RestUserPassword">
+                                                <form hidden th:id="${listU.getUser_id()}" method="post" action="/RestUserPassword">
                                                     <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
                                                     <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                                                     <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">
@@ -213,7 +213,7 @@
                                                 <input type="submit" th:onclick="document.getElementById([[${listU.getUser_id()}]]).submit()" value="重置密码" class="btn btn-primary">
                                             </td>
                                             <td>
-                                                <form hidden th:id="${listU.getUser_id()+'del'}" method="post" action="http://127.0.0.1:8080/DelUser">
+                                                <form hidden th:id="${listU.getUser_id()+'del'}" method="post" action="/DelUser">
                                                     <input type="hidden" name="username" th:value="${company.get(0).getSuper_username()}">
                                                     <input type="hidden" name="company" th:value="${company.get(0).getSuper_company()}">
                                                     <input type="hidden" name="department" th:value="${company.get(0).getSuper_department()}">

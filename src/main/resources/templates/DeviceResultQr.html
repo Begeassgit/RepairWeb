@@ -109,8 +109,8 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <form id="back" action="/FindMyDevice" method="post">
-                                        <input type="hidden" name="user_username" th:value="${user.get(0)}">
+                                    <form id="back" action="/Home" method="post">
+                                        <input type="hidden" name="user" th:value="${user.get(0)}">
                                         <input type="hidden" name="user_department" th:value="${user.get(2)}">
                                         <input type="hidden" name="user_company" th:value="${user.get(1)}">
                                     </form>
