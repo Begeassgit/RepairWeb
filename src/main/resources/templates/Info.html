@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>个人信息</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="Css/style.css" rel="stylesheet">
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border fix-sidebar">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label"></p>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <form action="/Home" method="post" id="self">
+                            <input type="hidden" name="user" th:value="${user.user_username}">
+                            <input type="hidden" name="user_department" th:value="${user.user_department}">
+                            <input type="hidden" name="user_company" th:value="${user.user_company}">
+                        </form>
+                        <form action="/MyInfo" method="post" id="user">
+                            <input type="hidden" name="username" th:value="${user.user_username}">
+                            <input type="hidden" name="user_department" th:value="${user.user_department}">
+                            <input type="hidden" name="user_company" th:value="${user.user_company}">
+                        </form>
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false" onclick="document.getElementById('self').submit();"><i class="mdi mdi-barcode"></i><span class="hide-menu">扫描报修</span></a></li>
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false" onclick="document.getElementById('user').submit();"><i class="mdi mdi-account-check"></i><span class="hide-menu">用户资料</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">个人信息</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="/Login" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <center class="m-t-30"> <img src="assets/images/users/5.jpg" class="img-circle" width="150"/>
+                                    <h4 class="card-title m-t-10">欢迎</h4>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material">
+                                    <div class="form-group">
+                                        <label class="col-md-12">用户名</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${user.user_username}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">联系电话</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${user.user_phone}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">工作科室</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${user.user_address}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">所属部门</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${user.user_department}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">所属公司</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${user.user_company}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">其他信息</label>
+                                        <div class="col-md-12">
+                                            <p class="form-control form-control-line" th:text="${user.user_info}"></p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="Js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="Js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="Js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="Js/custom.min.js"></script>
+</body>
+
+</html>

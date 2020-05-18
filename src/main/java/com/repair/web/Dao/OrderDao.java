@@ -12,8 +12,9 @@ public interface OrderDao {
     @Select("SELECT * FROM maintenance_db.order_t WHERE (order_company=#{order_company} AND order_department=#{order_department})")
     List<Order>getOrder(String order_company,String order_department);
 
-    @Insert("INSERT INTO maintenance_db.order_t(order_submitUser,order_id,order_time,order_address,order_deviceName,order_deviceType,order_info,order_status,order_company,order_deviceId)" +
-            "VALUES(?,?,?,?,?,?,?,?,?")
+    @Insert("INSERT INTO maintenance_db.order_t(order_submitUser,order_id,order_time,order_address,order_deviceName,order_deviceType,order_info,order_status,order_company," +
+            "order_department,order_deviceId)VALUES(#{order_submitUser},#{order_id},#{order_time},#{order_address},#{order_deviceName},#{order_deviceType},#{order_info},#{order_status}," +
+            "#{order_company},#{order_department},#{order_deviceId})")
     int addOrder(Order order);
 
     @Update("UPDATE maintenance_db.order_t SET order_status=#{order_status} WHERE (order_id=#{order_id} AND order_department=#{order_department})")
