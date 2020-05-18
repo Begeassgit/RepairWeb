@@ -30,4 +30,8 @@ public class UserService {
     public boolean addOne(User user){
         return userDao.register(user)>=1;
     }
+
+    public User getMyUser(String username,String company,String department){
+        return userDao.MyUser(company,department,username);
+    }
 }

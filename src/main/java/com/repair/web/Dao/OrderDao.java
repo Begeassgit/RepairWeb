@@ -12,7 +12,7 @@ public interface OrderDao {
     @Select("SELECT * FROM maintenance_db.order_t WHERE (order_company=#{order_company} AND order_department=#{order_department})")
     List<Order>getOrder(String order_company,String order_department);
 
-    @Insert("INSERT INTO maintenance_db.order_t(order_submitUser,order_id,order_time,order_address,order_deviceName,order_deviceType,order_info,order_status,order_company)" +
+    @Insert("INSERT INTO maintenance_db.order_t(order_submitUser,order_id,order_time,order_address,order_deviceName,order_deviceType,order_info,order_status,order_company,order_deviceId)" +
             "VALUES(?,?,?,?,?,?,?,?,?")
     int addOrder(Order order);
 

@@ -19,6 +19,9 @@ public interface UserDao {
     @Select("SELECT * FROM maintenance_db.user_t WHERE(user_company=#{user_company} AND user_department=#{user_department})")
     List<User> getUser(String user_company,String user_department);
 
+    @Select("SELECT * FROM maintenance_db.user_t WHERE(user_company=#{user_company} AND user_department=#{user_department} AND user_username=#{user_username})")
+    User MyUser(String user_company,String user_department,String user_username);
+
     @Update("UPDATE maintenance_db.user_t SET user_password=#{password} WHERE (user_id=#{user_id})")
     int rest(String password,String user_id);
 

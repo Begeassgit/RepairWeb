@@ -48,8 +48,13 @@
                             <input type="hidden" name="user_department" th:value="${user.user_department}">
                             <input type="hidden" name="user_company" th:value="${user.user_company}">
                         </form>
+                        <form action="/MyInfo" method="post" id="user">
+                            <input type="hidden" name="username" th:value="${user.user_username}">
+                            <input type="hidden" name="user_department" th:value="${user.user_department}">
+                            <input type="hidden" name="user_company" th:value="${user.user_company}">
+                        </form>
                         <li> <a class="waves-effect waves-dark" aria-expanded="false" onclick="document.getElementById('self').submit();"><i class="mdi mdi-barcode"></i><span class="hide-menu">扫描报修</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">用户资料</span></a></li>
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false" onclick="document.getElementById('user').submit();"><i class="mdi mdi-account-check"></i><span class="hide-menu">用户资料</span></a></li>
                     </ul>
                 </nav>
             </div>

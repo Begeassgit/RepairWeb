@@ -57,11 +57,15 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <form hidden id="add" method="post" action="/AddSubmit">
-                                                <input type="text" name="username" th:value="${user.get(0)}">
-                                                <input type="text" name="company">
-                                                <input type="text" name="department">
-                                                <input type="text" name="device_id">
+                                            <form id="add" method="post" action="/addOrderSubmit">
+                                                <input type="text" name="order_submitUser" readonly="readonly" th:placeholder="${'用户'+user.get(0)}" th:value="${user.get(0)}">
+                                                <input type="text" name="order_company" readonly="readonly" th:placeholder="${'公司'+user.get(1)}" th:value="${user.get(1)}">
+                                                <input type="text" name="order_department" readonly="readonly" th:placeholder="${'部门'+user.get(2)}" th:value="${user.get(2)}">
+                                                <input type="text" name="order_address" placeholder="输入设备所在地址">
+                                                <input type="text" name="order_deviceId" placeholder="输入设备ID">
+                                                <input type="text" name="order_deviceName" placeholder="输入设备名">
+                                                <input type="text" name="order_deviceType" placeholder="输入设备类型">
+                                                <input type="text" name="order_info" placeholder="输入设备问题">
                                             </form>
                                         </div>
                                     </div>

@@ -107,5 +107,13 @@ public class UserInfoController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/MyInfo",method = RequestMethod.POST)
+    public ModelAndView myInfoPage(String username,String user_department,String user_company){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("Info");
+        modelAndView.addObject("user",userService.getMyUser(username,user_company,user_department));
+        return modelAndView;
+    }
+
 
 }

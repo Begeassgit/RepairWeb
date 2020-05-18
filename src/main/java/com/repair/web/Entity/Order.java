@@ -10,6 +10,7 @@ public class Order {
     private String order_address;
     private String order_deviceName;
     private String order_deviceType;
+    private String order_deviceId;
     private String order_info;
     private String order_status;
     private String order_department;
@@ -101,5 +102,13 @@ public class Order {
 
     public void setOrder_company(String order_company) {
         this.order_company = order_company;
+    }
+
+    public String getOrder_deviceId() {
+        return order_deviceId;
+    }
+
+    public void setOrder_deviceId(String order_deviceId) {
+        this.order_deviceId = order_deviceId;
     }
 }

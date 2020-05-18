@@ -5,14 +5,17 @@ import com.repair.web.Dao.OrderDao;
 import com.repair.web.Entity.Order;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 @Service
 public class OrderService {
-    public final OrderDao orderDao;
-    public final DeviceDao deviceDao;
+    private final OrderDao orderDao;
+    private final DeviceDao deviceDao;
+    private long count=0;
 
     public OrderService(OrderDao orderDao,DeviceDao deviceDao) {
         this.orderDao = orderDao;
@@ -24,6 +27,13 @@ public class OrderService {
     }
 
     public boolean addOrder(Order order){
+        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyyMMdd");
+        Date date=new Date();
+        String StrCount=String.format("%07d",count);
+        order.setOrder_time(date);
+        order.setOrder_id(simpleDateFormat.format(new Date())+StrCount);
+        order.setOrder_status("待审");
+        count++;
         return orderDao.addOrder(order)>=1;
     }
 

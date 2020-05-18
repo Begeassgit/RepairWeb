@@ -1,6 +1,7 @@
 package com.repair.web.Controller.FE;
 
 import com.repair.web.Entity.Order;
+import com.repair.web.Entity.User;
 import com.repair.web.Service.FE.LoginService;
 import com.repair.web.Service.FE.OrderService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -39,13 +40,16 @@ public class OrderController {
     @RequestMapping(value = "/addOrderSubmit",method = RequestMethod.POST)
     public ModelAndView addOrder(Order order){
         ModelAndView modelAndView=new ModelAndView();
-        if(orderService.addOrder(order)){
-            modelAndView.setViewName("");
-            modelAndView.addObject("state",true);
+        if(!orderService.addOrder(order)){
+            modelAndView.setViewName("Error");
         }
         else {
-            modelAndView.setViewName("");
-            modelAndView.addObject("state",false);
+            User user1=new User();
+            user1.setUser_username(order.getOrder_submitUser());
+            user1.setUser_department(order.getOrder_department());
+            user1.setUser_company(order.getOrder_company());
+            modelAndView.setViewName("AddOrder");
+            modelAndView.addObject("user",user1);
         }
         return modelAndView;
     }
