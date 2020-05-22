@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Css\Login.css">
+        <script>
+            function checkPassword(){
+                var password=document.forms['form1']['worker_password'].value;
+                var password2=document.forms['form1']['worker_password2'].value;
+
+                if(password!==password2){
+                    alert("2次输入的密码不一致");
+                    return false;
+                }
+
+                if(password.length<6){
+                    alert("密码至少6位");
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </head>
+    <title>维修人员注册</title>
+    <body background="Image/h1.jpg">
+        <div class="box">
+            <h2>维修人员注册</h2>
+           <form name="form1"action="/WorkerRegisterSubmit" method="POST" onsubmit="checkPassword()">
+            <div class="inputBox">
+                <input type="text" name="worker_id" required="">
+                <label>用户名</label>
+            </div>
+               <div class="inputBox">
+                   <input type="text" name="worker_name" required="">
+                   <label>姓名</label>
+               </div>
+            <div class="inputBox">
+                <input type="password" name="worker_password" required="">
+                <label>密码</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="worker_password2" required="">
+                <label>确认密码</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="worker_ex" required="">
+                <label>性别</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="worker_age" required="">
+                <label>年龄</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="worker_rank" required="">
+                <label>等级</label>
+            </div>
+            <input type="submit" value="注册">
+           </form>
+        </div>
+    </body>
+</html>

@@ -32,4 +32,8 @@ public interface OrderDao {
     @Delete("DELETE FROM maintenance_db.order_t WHERE (order_company=#{order_company} AND order_department=#{order_department} AND order_submitUser=#{order_submitUser}" +
             "AND order_id=#{order_id})")
     int delOneOrder(String order_company,String order_department,String order_submitUser,String order_id);
+
+    @Select("SELECT * FROM maintenance_db.order_t WHERE(order_status=#{order_status} OR order_status=#{order_status2} OR order_status=#{order_status3})")
+    List<Order> getAllOrder(String order_status,String order_status2,String order_status3);
+
 }

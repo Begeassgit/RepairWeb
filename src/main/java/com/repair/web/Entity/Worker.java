@@ -4,6 +4,7 @@ public class Worker {
     private int id;
     private String worker_id;
     private String worker_name;
+    private String worker_password;
     private int worker_takeTime;
     private String worker_sex;
     private int worker_age;
@@ -63,5 +64,13 @@ public class Worker {
 
     public void setWorker_rank(String worker_rank) {
         this.worker_rank = worker_rank;
+    }
+
+    public String getWorker_password() {
+        return worker_password;
+    }
+
+    public void setWorker_password(String worker_password) {
+        this.worker_password = worker_password;
     }
 }

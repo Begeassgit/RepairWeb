@@ -42,6 +42,16 @@ public class OrderService {
         return orderDao.statusOrder(order_status,order_id,order_department)>=1;
     }
 
+    public boolean repOrder(String order_id,String order_department){
+        String order_status="维修中";
+        return orderDao.statusOrder(order_status,order_id,order_department)>=1;
+    }
+
+    public boolean switchOrder(String order_id,String order_department){
+        String order_status="更换";
+        return orderDao.statusOrder(order_status,order_id,order_department)>=1;
+    }
+
     public boolean denyOrder(String order_id,String order_department){
         String order_status="退回";
         return orderDao.statusOrder(order_status,order_id,order_department)>=1;
@@ -49,8 +59,8 @@ public class OrderService {
 
     public List<Integer> getCountInfo(String device_company,String order_department){
         List<Integer> list=new ArrayList<>();
-        list.add(0,orderDao.getRepairSum(device_company,"处理中",order_department));
-        list.add(1,orderDao.getSwitchSum(device_company,"需置换",order_department));
+        list.add(0,orderDao.getRepairSum(device_company,"维修中",order_department));
+        list.add(1,orderDao.getSwitchSum(device_company,"更换",order_department));
         return list;
     }
 
@@ -61,4 +71,9 @@ public class OrderService {
     public boolean delOneOrder(String user,String department,String company,String order_id){
         return orderDao.delOneOrder(company,department,user,order_id)>=1;
     }
+
+    public List<Order> getAll(){
+        return orderDao.getAllOrder("通过","维修中","更换");
+    }
+
 }

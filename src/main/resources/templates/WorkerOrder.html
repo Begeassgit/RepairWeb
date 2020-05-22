@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>维修单</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="Css/style.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="Css/pages/dashboard.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">查询结果</p>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li><span style="color: azure" class="hide-menu">个人信息</span></p></li>
+                        <li><h4 style="color: azure" th:text="${'用户名:'+worker.get(0).getWorker_id()}"></h4><span class="hide-menu"></span></p></li>
+                        <li><h4 style="color: azure" th:text="${'姓名:'+worker.get(0).getWorker_name()}"></h4><span class="hide-menu"></span></p></li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+
+        </aside>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">维修单</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="/WorkerLogin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">退出</a>
+                        <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabels">输入信息</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form id="add" method="post" action="/Finish">
+                                                <input type="hidden" name="worker_name" th:value="${worker.get(0).getWorker_name()}">
+                                                <input type="hidden" name="worker_id" th:value="${worker.get(0).getWorker_id()}">
+                                                <input type="text" name="order_id" placeholder="输入订单ID">
+                                                <input type="text" name="order_department" placeholder="输入维修设备归属部门">
+                                                <input type="text" name="username" placeholder="输入订单的提交用户名">
+                                                <input type="text" name="company" placeholder="输入设备所属公司">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('add').submit();" style="color: azure">提交</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">结果</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>维修单Id</th>
+                                                <th>设备Id</th>
+                                                <th>设备名</th>
+                                                <th>设备类型</th>
+                                                <th>维修单提交用户</th>
+                                                <th>维修信息</th>
+                                                <th>地址</th>
+                                                <th>时间</th>
+                                                <th>状态</th>
+                                                <th>所属公司</th>
+                                                <th>所属部门</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="list:${order}">
+                                                <td th:text="${list.order_id}"></td>
+                                                <td th:text="${list.order_deviceId}"></td>
+                                                <td th:text="${list.order_deviceName}"></td>
+                                                <td th:text="${list.order_deviceType}"></td>
+                                                <td th:text="${list.order_submitUser}"></td>
+                                                <td th:text="${list.order_info}"></td>
+                                                <td th:text="${list.order_address}"></td>
+                                                <td th:text="${list.order_time}"></td>
+                                                <td th:text="${list.order_status}"></td>
+                                                <td th:text="${list.order_company}"></td>
+                                                <td th:text="${list.order_department}"></td>
+                                                <td>
+                                                    <form hidden th:id="${list.order_id}" method="post" action="/Deal">
+                                                        <input type="hidden" name="worker_name" th:value="${worker.get(0).getWorker_name()}">
+                                                        <input type="hidden" name="worker_id" th:value="${worker.get(0).getWorker_id()}">
+                                                        <input type="hidden" name="order_id" th:value="${list.order_id}">
+                                                        <input type="hidden" name="order_department" th:value="${list.order_department}">
+                                                    </form>
+                                                    <input type="submit" th:onclick="document.getElementById([[${list.order_id}]]).submit()" value="处理" class="btn btn-success">
+                                                </td>
+                                                <td>
+                                                    <form hidden th:id="${list.order_id+'s'}" method="post" action="/ToSwitch">
+                                                        <input type="hidden" name="worker_name" th:value="${worker.get(0).getWorker_name()}">
+                                                        <input type="hidden" name="worker_id" th:value="${worker.get(0).getWorker_id()}">
+                                                        <input type="hidden" name="order_id" th:value="${list.order_id}">
+                                                        <input type="hidden" name="order_department" th:value="${list.order_department}">
+                                                    </form>
+                                                    <input type="submit" th:onclick="document.getElementById([[${list.order_id+'s'}]]).submit()" value="需要置换" class="btn btn-success">
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals">完成维修</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="Js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="Js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="Js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="Js/custom.min.js"></script>
+    <script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="assets/plugins/d3/d3.min.js"></script>
+    <script src="assets/plugins/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="Js/dashboard.js"></script>
+    <script>
+
+    </script>
+
+</body>
+</html>
