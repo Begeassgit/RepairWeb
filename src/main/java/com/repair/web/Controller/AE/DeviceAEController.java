@@ -53,7 +53,7 @@ public class DeviceAEController {
         map.put("device",deviceAEService.companyBase(company));
         map.put("company",list);
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("Base");
+        modelAndView.setViewName("BaseDevice");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
@@ -84,7 +84,7 @@ public class DeviceAEController {
         map.put("items",itemsAEService.itemsForBase(company));
         map.put("company",list);
 
-        modelAndView.setViewName("Base");
+        modelAndView.setViewName("BaseDevice");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
@@ -157,7 +157,7 @@ public class DeviceAEController {
             list.add(0,company);
             map.put("device",deviceAEService.companyBase(company));
             map.put("company",list);
-            modelAndView.setViewName("Base");
+            modelAndView.setViewName("BaseDevice");
             modelAndView.addAllObjects(map);
         }
         return modelAndView;
@@ -199,7 +199,7 @@ public class DeviceAEController {
         list.add(0,company);
         map.put("device",deviceAEService.companyBase(company));
         map.put("company",list);
-        modelAndView.setViewName("Base");
+        modelAndView.setViewName("BaseDevice");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
@@ -250,7 +250,7 @@ public class DeviceAEController {
         list.add(0,company);
         map.put("device",deviceAEService.companyBase(company));
         map.put("company",list);
-        modelAndView.setViewName("Base");
+        modelAndView.setViewName("BaseDevice");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
