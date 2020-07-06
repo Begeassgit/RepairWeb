@@ -32,7 +32,7 @@ public class TakeListAEController {
         map.put("company",list);
         map.put("takeList",takeListAEService.getTakeList(company));
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("TakeList");
+        modelAndView.setViewName("BaseTakeList");
         modelAndView.addAllObjects(map);
         return modelAndView;
     }
@@ -69,7 +69,7 @@ public class TakeListAEController {
             map.put("company",list);
             map.put("takeList",takeListAEService.getTakeList(company));
 
-            modelAndView.setViewName("TakeList");
+            modelAndView.setViewName("BaseTakeList");
             modelAndView.addAllObjects(map);
 
         }

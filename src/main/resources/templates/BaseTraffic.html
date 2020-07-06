@@ -59,16 +59,16 @@
                     <form id="form5" method="post" action="/BaseCar">
                         <input type="hidden" name="company" th:value="${company}">
                     </form>
-                    <form id="form6" method="post" action="/BaseCar">
+                    <form id="form6" method="post" action="/BaseFurniture">
                         <input type="hidden" name="company" th:value="${company}">
                     </form>
-                    <form id="form7" method="post" action="/BaseCar">
+                    <form id="form7" method="post" action="/BaseTeachTool">
                         <input type="hidden" name="company" th:value="${company}">
                     </form>
-                    <form id="form8" method="post" action="/BaseCar">
+                    <form id="form8" method="post" action="/BaseBuilding">
                         <input type="hidden" name="company" th:value="${company}">
                     </form>
-                    <form id="form9" method="post" action="/BaseCar">
+                    <form id="form9" method="post" action="/BaseCopyright">
                         <input type="hidden" name="company" th:value="${company}">
                     </form>
                     <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
@@ -100,7 +100,7 @@
                     <h3 class="text-themecolor">交通载具</h3>
                 </div>
                 <div class="col-md-7 align-self-center">
-                    <form hidden id="outputItem" method="post" action="/OutputItem" >
+                    <form hidden id="outputItem" method="post" action="/OutputCar" >
                         <input type="hidden" name="company" th:value="${company}">
                     </form>
                     <a href="/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
@@ -161,14 +161,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <form action="/AddOneItems" method="post" id="Add">
-                                            <input type="text" name="items_id" placeholder="输入耗材编号">
-                                            <input type="text" name="name" placeholder="输入耗材名">
-                                            <input type="text" name="type" placeholder="输入耗材类型">
-                                            <input type="text" name="brand" placeholder="输入耗材品牌">
-                                            <input type="text" name="info" placeholder="备注">
-                                            <input type="text" name="count" placeholder="添加数量">
-                                            <input type="hidden" name="company" th:value="${company}">
+                                        <form action="/AddCar" method="post" id="Add">
+                                            <input type="text" name="cars_id" placeholder="输入载具编号">
+                                            <input type="text" name="cars_name" placeholder="输入型号名">
+                                            <input type="text" name="cars_brand" placeholder="输入品牌">
+                                            <input type="text" name="cars_status" placeholder="输入状态">
+                                            <input type="hidden" name="cars_company" th:value="${company}">
                                         </form>
                                     </div>
                                 </div>
@@ -204,7 +202,7 @@
                                             <td th:text="${list.getCars_name()}"></td>
                                             <td th:text="${list.getCars_brand()}"></td>
                                             <td th:text="${list.getCars_status()}"></td>
-                                            <td id="using" th:text="${list.getCars_department()}"></td>
+                                            <td th:id="${list.cars_id+'using'}" th:text="${list.getCars_department()}"></td>
                                             <td th:text="${list.getCars_company()}"></td>
                                             <td>
                                                 <form hidden th:id="${list.cars_id}" method="post" action="/DelCar">
@@ -212,7 +210,7 @@
                                                     <input type="hidden" name="company" th:value="${list.getCars_company()}">
                                                 </form>
                                                 <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${list.cars_id}]]).submit()">
-                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" onclick="check()">出借</button>
+                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" th:onclick="check([[${list.cars_id+'using'}]])">出借</button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -251,10 +249,8 @@
 <script src="datatables.net-buttons/js/buttons.colVis.min.js"></script>
 <script src="Js/table/datatables-init.js"></script>
 <script>
-
-    let status=document.getElementById("using").innerHTML;
-
-    function check() {
+    function check(string) {
+        let status=document.getElementById(string).innerHTML;
         if(status!==""){
             alert("车辆已出借，禁止再次出借");
             window.location.reload();

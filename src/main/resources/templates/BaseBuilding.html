@@ -1,10 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>仓库管理</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Css/style.css" rel="stylesheet">
+    <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <script>
+        function f() {
+            document.getElementById('myModal').modal();
+        }
+    </script>
+</head>
+<body class="fix-header card-no-border fix-sidebar">
+<div class="preloader">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label"></p>
+    </div>
+</div>
+<div id="main-wrapper">
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a></li>
+                    <p style="margin-top: 16px;font-family: 'Microsoft YaHei UI';font-size: x-large;font-weight: bold">QR Code报修与资产管理系统 </p>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="left-sidebar">
+
+        <div class="scroll-sidebar">
+
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <form id="form1" method="post" action="/Base">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form2" method="post" action="/WelcomeBase">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form3" method="post" action="/BaseItem">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form4" method="post" action="/TakeList">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form5" method="post" action="/BaseCar">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form6" method="post" action="/BaseFurniture">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form7" method="post" action="/BaseTeachTool">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form8" method="post" action="/BaseBuilding">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <form id="form9" method="post" action="/BaseCopyright">
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
+                        <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                        <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
+                        <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form5').submit();" aria-expanded="false">
+                        <i class="mdi mdi-car"></i><span class="hide-menu">交通载具管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form6').submit();" aria-expanded="false">
+                        <i class="mdi mdi-chair-school"></i><span class="hide-menu">家具用具管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form7').submit();" aria-expanded="false">
+                        <i class="mdi mdi-school"></i><span class="hide-menu">教学用具管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form8').submit();" aria-expanded="false">
+                        <i class="mdi mdi-home-modern"></i><span class="hide-menu">房屋、附属设施管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form9').submit();" aria-expanded="false">
+                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">土地使用权、软件管理</span></a></li>
+                    <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form4').submit();" aria-expanded="false">
+                        <i class="mdi mdi-gauge"></i><span class="hide-menu">领用单管理</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">房屋/附属设施</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <form hidden id="outputItem" method="post" action="/OutputCar" >
+                        <input type="hidden" name="company" th:value="${company}">
+                    </form>
+                    <a href="/LoginAdmin" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" style="margin: 3px">退出</a>
+                    <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" data-toggle="modal" data-target="#myModal">上传房屋/附属设施表</button>
+                    <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" onclick="document.getElementById('outputItem').submit();">下载房屋/附属设施表</a>
+                    <button class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" data-toggle="modal" data-target="#myAdd">添加单种房屋/附属设施</button>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">上传</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <form action="/UploadItem" method="post" id="fileUpload" enctype="multipart/form-data">
+                                            <label class="btn btn-primary">选择文件
+                                                <input type="file" name="file" class="btn btn-primary" style="display: none">
+                                                <input type="hidden" name="company" th:value="${company}">
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('fileUpload').submit();" style="color: azure">提交</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabels" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabelsAdd">输入房屋、附属设施信息</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <form action="/AddCar" method="post" id="Add">
+                                            <input type="text" name="cars_id" placeholder="输入房屋/附属设施编号">
+                                            <input type="text" name="cars_name" placeholder="输入房屋/附属设施名">
+                                            <input type="text" name="cars_brand" placeholder="输入信息">
+                                            <input type="text" name="cars_brand" placeholder="输入相关部门">
+                                            <input type="hidden" name="cars_company" th:value="${company}">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('Add').submit();" style="color: azure">提交</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content mt-3">
+                <div class="animated fadeIn">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>编号</th>
+                                            <th>房屋/附属设施名</th>
+                                            <th>状态</th>
+                                            <th>信息</th>
+                                            <th>相关部门</th>
+                                            <th>所属公司</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="list:${BuildingList}">
+                                            <td th:text="${list.getBuilding_id()}"></td>
+                                            <td th:text="${list.getBuilding_name()}"></td>
+                                            <td th:text="${list.getBuilding_status()}"></td>
+                                            <td th:text="${list.getBuilding_info()}"></td>
+                                            <td th:text="${list.getBuilding_department()}"></td>
+                                            <td th:text="${list.getBuilding_company()}"></td>
+                                            <td>
+                                                <form hidden th:id="${list.building_id}" method="post" action="/DelCopyright">
+                                                    <input type="hidden" name="building_id" th:value="${list.building_id}">
+                                                    <input type="hidden" name="company" th:value="${list.building_company}">
+                                                </form>
+                                                <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${list.building_id}]]).submit()">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+
+<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="Js/perfect-scrollbar.jquery.min.js"></script>
+
+<script src="Js/waves.js"></script>
+
+<script src="Js/sidebarmenu.js"></script>
+
+<script src="Js/custom.min.js"></script>
+<script src="jquery/dist/jquery.min.js"></script>
+<script src="popper.js/dist/umd/popper.min.js"></script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="Js/table/main.js"></script>
+<script src="datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="datatables.net-buttons/js/buttons.colVis.min.js"></script>
+<script src="Js/table/datatables-init.js"></script>
 </body>
+
 </html>
