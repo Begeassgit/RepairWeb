@@ -5,7 +5,6 @@ package com.repair.web.Controller.AE;/*
 
 import com.repair.web.Entity.Cars;
 import com.repair.web.Service.AE.CarAEService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
