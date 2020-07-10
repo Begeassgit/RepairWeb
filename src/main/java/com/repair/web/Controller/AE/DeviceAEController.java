@@ -110,7 +110,26 @@ public class DeviceAEController {
     @RequestMapping(value = "/OutputDe",method = RequestMethod.POST)
     public void getFileDe(HttpServletResponse response,String company){
         XSSFWorkbook xssfWorkbook=deviceAEService.sheetOutput(company);
-        String fileName="固定资产.xlsx";
+        String fileName="设备.xlsx";
+        OutputStream outputStream;
+        try{
+            fileName= URLEncoder.encode(fileName,"UTF-8");
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition","attachment;filename="+fileName);
+            outputStream=response.getOutputStream();
+            xssfWorkbook.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        }
+        catch (IOException eio){
+            eio.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/OutputDeviceTemple",method = RequestMethod.GET)
+    public void getFileDeviceTample(HttpServletResponse response){
+        XSSFWorkbook xssfWorkbook=deviceAEService.sheetOutputTemple();
+        String fileName="设备模板.xlsx";
         OutputStream outputStream;
         try{
             fileName= URLEncoder.encode(fileName,"UTF-8");
@@ -129,6 +148,25 @@ public class DeviceAEController {
     @RequestMapping(value = "/OutputItem",method = RequestMethod.POST)
     public void getFileItem(HttpServletResponse response,String company){
         XSSFWorkbook xssfWorkbook=deviceAEService.sheetOutputItem(company);
+        String fileName="耗材.xlsx";
+        OutputStream outputStream;
+        try{
+            fileName= URLEncoder.encode(fileName,"UTF-8");
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition","attachment;filename="+fileName);
+            outputStream=response.getOutputStream();
+            xssfWorkbook.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        }
+        catch (IOException eio){
+            eio.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/OutputItemTemple",method = RequestMethod.GET)
+    public void getFileItemTample(HttpServletResponse response){
+        XSSFWorkbook xssfWorkbook=deviceAEService.sheetOutputItemTemple();
         String fileName="耗材.xlsx";
         OutputStream outputStream;
         try{

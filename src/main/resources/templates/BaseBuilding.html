@@ -183,7 +183,7 @@
                                             <td th:text="${list.getBuilding_department()}"></td>
                                             <td th:text="${list.getBuilding_company()}"></td>
                                             <td>
-                                                <form hidden th:id="${list.building_id}" method="post" action="/DelCopyright">
+                                                <form hidden th:id="${list.building_id}" method="post" action="/DelBuilding">
                                                     <input type="hidden" name="building_id" th:value="${list.building_id}">
                                                     <input type="hidden" name="company" th:value="${list.building_company}">
                                                 </form>

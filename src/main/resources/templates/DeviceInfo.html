@@ -14,14 +14,8 @@
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
-    <!--c3 CSS -->
-    <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="Css/style.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-    <link href="Css/pages/dashboard.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
     <link rel="stylesheet" href="datatables.net-bs4/css/dataTables.bootstrap4.min.css">
@@ -41,7 +35,7 @@
                 <div class="navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                        <p style="margin-top: 16px;font-family: 'Microsoft YaHei UI';font-size: x-large;font-weight: bold">QR Code报修与资产管理系统 </p>
+                        <p style="margin-top: 16px;font-family: 'Microsoft YaHei UI',serif;font-size: x-large;font-weight: bold">QR Code报修与资产管理系统 </p>
                     </ul>
                 </div>
             </nav>
@@ -110,20 +104,10 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div>
-                                        <h3 class="card-title m-b-5"><span class="lstick"></span>设备月份统计图</h3>
-                                    </div>
-                                    <div class="ml-auto">
-                                        <label>
-                                            <select class="custom-select b-0">
-                                                <option selected="">January 2017</option>
-                                                <option value="1">February 2017</option>
-                                                <option value="2">March 2017</option>
-                                                <option value="3">April 2017</option>
-                                            </select>
-                                        </label>
+                                        <h3 class="card-title m-b-5"><span class="lstick"></span>设备统计图</h3>
                                     </div>
                                 </div>
-                                <div id="sales-overview2" class="p-relative" style="height:360px;"></div>
+                                <div id="ts" class="p-relative" style="height:360px;"></div>
                             </div>
                         </div>
                     </div>
@@ -131,7 +115,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><span class="lstick"></span>部门设备状态</h4>
-                                <div id="visitor" style="height:250px; width:100%;"></div>
+                                <div id="chart" style="height:250px; width:100%;">
+                                </div>
                                 <table class="table vm font-14">
                                     <tr>
                                         <td class="b-0">维修中</td>
@@ -223,13 +208,6 @@
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
-    <script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
-    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 JavaScript -->
-    <script src="assets/plugins/d3/d3.min.js"></script>
-    <script src="assets/plugins/c3-master/c3.min.js"></script>
-    <!-- Chart JS -->
-    <script src="Js/dashboard.js"></script>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="popper.js/dist/umd/popper.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
@@ -242,5 +220,84 @@
     <script src="datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="datatables.net-buttons/js/buttons.colVis.min.js"></script>
     <script src="Js/table/datatables-init.js"></script>
+    <script type="text/javascript" src="https://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("chart");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        app.title = '环形图';
+
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            color:['#93D8A9','#FFB99D','#AF7DCC','#FFD83D','#bbe2e8'],
+            series: [{
+                name: '数量统计',
+                type: 'pie',
+                radius: ['30%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value: 4,
+                    name: '笔记本电脑'
+                },
+                    {
+                        value: 1,
+                        name: '台式机'
+                    },
+                    {
+                        value: 2,
+                        name: '打印机'
+                    },
+                ]
+            }]
+        };
+        if(option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+    <script>
+        var myChart = echarts.init(document.getElementById('ts'));
+
+        var option = {
+            title: {
+                text: '使用中'
+            },
+            tooltip: {},
+            legend: {
+                data:['设备']
+            },
+            xAxis: {
+                data: ["联想","华硕","惠普","益普生"]
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: [4, 1, 1, 1]
+            }]
+        };
+        myChart.setOption(option);
+    </script>
 </body>
 </html>

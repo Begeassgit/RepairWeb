@@ -13,16 +13,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- This page CSS -->
-    <!-- chartist CSS -->
-    <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
-    <!--c3 CSS -->
-    <link href="assets/plugins/c3-master/c3.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="Css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
-    <link href="Css/pages/dashboard.css" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
     <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
     <link rel="stylesheet" href="datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -110,20 +102,10 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div>
-                                        <h3 class="card-title m-b-5"><span class="lstick"></span>耗材月份统计图</h3>
-                                    </div>
-                                    <div class="ml-auto">
-                                        <label>
-                                            <select class="custom-select b-0">
-                                                <option selected="">January 2017</option>
-                                                <option value="1">February 2017</option>
-                                                <option value="2">March 2017</option>
-                                                <option value="3">April 2017</option>
-                                            </select>
-                                        </label>
+                                        <h3 class="card-title m-b-5"><span class="lstick"></span>耗材统计图</h3>
                                     </div>
                                 </div>
-                                <div id="sales-overview2" class="p-relative" style="height:360px;"></div>
+                                <div id="ts" class="p-relative" style="height:360px;"></div>
                             </div>
                         </div>
                     </div>
@@ -131,7 +113,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><span class="lstick"></span>部门耗材状态</h4>
-                                <div id="visitor" style="height:250px; width:100%;"></div>
+                                <div id="v" style="height:250px; width:100%;"></div>
                                 <table class="table vm font-14">
                                     <tr>
                                         <td class="b-0">使用中</td>
@@ -203,13 +185,6 @@
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
-    <script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
-    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 JavaScript -->
-    <script src="assets/plugins/d3/d3.min.js"></script>
-    <script src="assets/plugins/c3-master/c3.min.js"></script>
-    <!-- Chart JS -->
-    <script src="Js/dashboard.js"></script>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="popper.js/dist/umd/popper.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
@@ -222,6 +197,89 @@
     <script src="datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="datatables.net-buttons/js/buttons.colVis.min.js"></script>
     <script src="Js/table/datatables-init.js"></script>
+    <script type="text/javascript" src="https://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("v");
+        var myChart = echarts.init(dom);
+        var app = {};
 
+        app.title = '环形图';
+
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            color:['#93D8A9','#FFB99D','#AF7DCC','#FFD83D','#bbe2e8'],
+            series: [{
+                name: '数量统计',
+                type: 'pie',
+                radius: ['30%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value: 13,
+                    name: '纸杯'
+                },
+                    {
+                        value: 0,
+                        name: '打印纸'
+                    },
+                    {
+                        value: 0,
+                        name: '圆珠笔'
+                    },
+                    {
+                        value: 21,
+                        name: '抽纸'
+                    },
+                ]
+            }]
+        };
+        if(option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+    <script>
+        var myChart = echarts.init(document.getElementById('ts'));
+
+        var option = {
+            title: {
+                text: '使用中'
+            },
+            tooltip: {},
+            legend: {
+                data:['耗材']
+            },
+            xAxis: {
+                data: ["打印纸","纸杯","包装盒","圆珠笔","盒装橡皮","抽纸"]
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: [0, 13, 0, 0, 0, 21]
+            }]
+        };
+        myChart.setOption(option);
+    </script>
+    </script>
 </body>
 </html>
