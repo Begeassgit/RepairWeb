@@ -17,6 +17,8 @@
     <link href="Css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="Css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body class="fix-header card-no-border fix-sidebar">
     <div class="preloader">
@@ -40,10 +42,10 @@
             <div class="scroll-sidebar">
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <form id="form2" method="post" action="/WelcomeBase">
-                           <input type="hidden" name="company" th:value="${company.get(0)}">
-                        </form>
                         <form id="form1" method="post" action="/Base">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <form id="form2" method="post" action="/WelcomeBase">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
                         <form id="form3" method="post" action="/BaseItem">
@@ -52,21 +54,36 @@
                         <form id="form4" method="post" action="/TakeList">
                             <input type="hidden" name="company" th:value="${company.get(0)}">
                         </form>
+                        <form id="form5" method="post" action="/BaseCar">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <form id="form6" method="post" action="/BaseFurniture">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <form id="form7" method="post" action="/BaseTeachTool">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <form id="form8" method="post" action="/BaseBuilding">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
+                        <form id="form9" method="post" action="/BaseCopyright">
+                            <input type="hidden" name="company" th:value="${company.get(0)}">
+                        </form>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form2').submit();" aria-expanded="false">
                             <i class="mdi mdi-account-check"></i><span class="hide-menu">公司信息</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">设备管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form3').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">耗材管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form5').submit();" aria-expanded="false">
                             <i class="mdi mdi-car"></i><span class="hide-menu">交通载具管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form6').submit();" aria-expanded="false">
                             <i class="mdi mdi-chair-school"></i><span class="hide-menu">家具用具管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form7').submit();" aria-expanded="false">
                             <i class="mdi mdi-school"></i><span class="hide-menu">教学用具管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form8').submit();" aria-expanded="false">
                             <i class="mdi mdi-home-modern"></i><span class="hide-menu">房屋、附属设施管理</span></a></li>
-                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form1').submit();" aria-expanded="false">
+                        <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form9').submit();" aria-expanded="false">
                             <i class="mdi mdi-book-multiple"></i><span class="hide-menu">土地使用权、软件管理</span></a></li>
                         <li> <a class="waves-effect waves-dark" onclick="document.getElementById('form4').submit();" aria-expanded="false">
                             <i class="mdi mdi-gauge"></i><span class="hide-menu">领用单管理</span></a></li>
@@ -78,7 +95,7 @@
             <div class="container-fluid">
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">仓库表</h3>
+                        <h3 class="text-themecolor">设备</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
                         <form hidden id="outputDe" method="post" action="/OutputDe" >
@@ -102,6 +119,7 @@
                                                     <input type="file" name="file" class="btn btn-primary" style="display: none">
                                                     <input type="hidden" name="company" th:value="${company.get(0)}">
                                                 </label>
+                                                <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" href="/OutputDeviceTemple">下载模板</a>
                                             </form>
                                         </div>
                                     </div>
@@ -162,14 +180,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">公司设备</h4>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
+                <div class="content mt-3">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                            <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>设备类型</th>
@@ -180,15 +198,15 @@
                                                 <th>所属公司</th>
                                                 <th>管理</th>
                                             </tr>
-                                        </thead>
-                                        <tbody>
+                                            </thead>
+                                            <tbody>
                                             <tr th:each="list:${device}">
                                                 <td th:text="${list.device_id}"></td>
                                                 <td th:text="${list.device_type}"></td>
                                                 <td th:text="${list.device_name}"></td>
                                                 <td th:text="${list.device_info}"></td>
                                                 <td th:text="${list.device_time}"></td>
-                                                <td th:text="${list.device_department}" id="using"></td>
+                                                <td th:text="${list.device_department}" th:id="${list.device_id+'using'}"></td>
                                                 <td th:text="${list.device_company}"></td>
                                                 <td>
                                                     <form hidden th:id="${list.device_id}" method="post" action="/DelAE">
@@ -196,11 +214,12 @@
                                                         <input type="hidden" name="company" th:value="${list.device_company}">
                                                     </form>
                                                     <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${list.device_id}]]).submit()">
-                                                    <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" onclick="check()">出借</button>
+                                                    <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" th:onclick="check([[${list.device_id+'using'}]])">出借</button>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -221,12 +240,22 @@
     <script src="Js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="Js/custom.min.js"></script>
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="popper.js/dist/umd/popper.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="Js/table/main.js"></script>
+    <script src="datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="Js/table/datatables-init.js"></script>
 
     <script>
-
-        let status=document.getElementById("using").innerHTML;
-
-        function check() {
+        function check(string) {
+            let status=document.getElementById(string).innerHTML;
             if(status!==""){
                 alert("设备已出借，禁止再次出借");
                 window.location.reload();
