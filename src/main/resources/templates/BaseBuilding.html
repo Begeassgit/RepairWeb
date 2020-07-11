@@ -116,11 +116,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <form action="/UploadItem" method="post" id="fileUpload" enctype="multipart/form-data">
+                                        <form action="/UploadBuilding" method="post" id="fileUpload" enctype="multipart/form-data">
                                             <label class="btn btn-primary">选择文件
                                                 <input type="file" name="file" class="btn btn-primary" style="display: none">
                                                 <input type="hidden" name="company" th:value="${company}">
                                             </label>
+                                            <a class="btn waves-effect waves-light btn-skype pull-right hidden-sm-down" style="margin: 3px;color: azure" href="/OutputBuildingTemplate">下载模板</a>
                                         </form>
                                     </div>
                                 </div>
@@ -139,12 +140,13 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <form action="/AddCar" method="post" id="Add">
-                                            <input type="text" name="cars_id" placeholder="输入房屋/附属设施编号">
-                                            <input type="text" name="cars_name" placeholder="输入房屋/附属设施名">
-                                            <input type="text" name="cars_brand" placeholder="输入信息">
-                                            <input type="text" name="cars_brand" placeholder="输入相关部门">
-                                            <input type="hidden" name="cars_company" th:value="${company}">
+                                        <form action="/AddOneBuilding" method="post" id="Add">
+                                            <input type="text" name="building_id" placeholder="输入房屋/附属设施编号">
+                                            <input type="text" name="building_name" placeholder="输入房屋/附属设施名">
+                                            <input type="text" name="building_status" placeholder="输入房屋/附属设施状态">
+                                            <input type="text" name="building_info" placeholder="输入信息">
+                                            <input type="text" name="building_department" placeholder="输入相关部门">
+                                            <input type="hidden" name="building_company" th:value="${company}">
                                         </form>
                                     </div>
                                 </div>

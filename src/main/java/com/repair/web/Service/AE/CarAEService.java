@@ -104,7 +104,6 @@ public class CarAEService {
             for(int i=0;i<sheetNum;i++){
                 XSSFSheet sheet=book.getSheetAt(i);
                 int rows=sheet.getPhysicalNumberOfRows();
-                Device device=null;
                 for(int j=1;j<rows;j++){
                     Cars cars=new Cars();
                     XSSFRow xssfRow=sheet.getRow(j);

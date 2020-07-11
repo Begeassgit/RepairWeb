@@ -3,11 +3,16 @@ package com.repair.web.Controller.AE;/*
 */
 
 import com.repair.web.Service.AE.CopyrightAEService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,5 +50,43 @@ public class CopyrightAEController {
         modelAndView.addAllObjects(map);
 
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/OutputCopyright",method = RequestMethod.POST)
+    public void outputSheet(HttpServletResponse response, String company){
+        XSSFWorkbook xssfWorkbook=copyrightAEService.outputSheet(company);
+        String fileName="土地使用权及软件.xlsx";
+        OutputStream outputStream;
+        try{
+            fileName= URLEncoder.encode(fileName,"UTF-8");
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition","attachment;filename="+fileName);
+            outputStream=response.getOutputStream();
+            xssfWorkbook.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        }
+        catch (IOException eio){
+            eio.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/OutputCopyrightTemplate",method = RequestMethod.GET)
+    public void outputSheetTemplate(HttpServletResponse response){
+        XSSFWorkbook xssfWorkbook=copyrightAEService.outputSheetTemplate();
+        String fileName="土地使用权及软件模板.xlsx";
+        OutputStream outputStream;
+        try{
+            fileName= URLEncoder.encode(fileName,"UTF-8");
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition","attachment;filename="+fileName);
+            outputStream=response.getOutputStream();
+            xssfWorkbook.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        }
+        catch (IOException eio){
+            eio.printStackTrace();
+        }
     }
 }
