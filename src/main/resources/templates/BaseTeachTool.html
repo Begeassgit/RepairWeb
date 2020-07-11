@@ -210,7 +210,7 @@
                                                     <input type="hidden" name="company" th:value="${list.getTeach_tool_company()}">
                                                 </form>
                                                 <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${list.teach_tool_id}]]).submit()">
-                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" th:onclick="check([[${list.teach_tool_id+'using'}]])">出借</button>
+                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" th:onclick="check([[${list.teach_tool_id+'using'}]])">领用</button>
                                             </td>
                                         </tr>
                                         </tbody>
