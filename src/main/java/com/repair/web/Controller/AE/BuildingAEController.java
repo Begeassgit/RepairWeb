@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,8 +50,23 @@ public class BuildingAEController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/OutputBuilding",method = RequestMethod.POST)
     public void outputBuilding(HttpServletResponse response,String company){
-        XSSFWorkbook xssfWorkbook;
+        XSSFWorkbook xssfWorkbook=buildingAEService.sheetOutPutBuilding(company);
+        String fileName="房屋及附属设施.xlsx";
+        OutputStream outputStream;
+        try{
+            fileName= URLEncoder.encode(fileName,"UTF-8");
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition","attachment;filename="+fileName);
+            outputStream=response.getOutputStream();
+            xssfWorkbook.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        }
+        catch (IOException eio){
+            eio.printStackTrace();
+        }
 
     }
 

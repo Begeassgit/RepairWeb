@@ -101,7 +101,7 @@ public class CarsAEController {
 
     }
 
-    @RequestMapping(value = "/OutputCarSheetTemplate",method = RequestMethod.POST)
+    @RequestMapping(value = "/OutputCarSheetTemplate",method = RequestMethod.GET)
     public void outputCarSheet(HttpServletResponse response){
         XSSFWorkbook xssfWorkbook=carAEService.outputCarSheetTemplate();
         String fileName="交通载具模板.xlsx";
@@ -121,7 +121,7 @@ public class CarsAEController {
 
     }
 
-    @RequestMapping(value = "/uploadCars",method = RequestMethod.POST)
+    @RequestMapping(value = "/UploadCars",method = RequestMethod.POST)
     public ModelAndView uploadCar(@RequestParam("file") MultipartFile file, String company) {
         ModelAndView modelAndView = new ModelAndView();
         Map<String, Object> map = new HashMap<>();
