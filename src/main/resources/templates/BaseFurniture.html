@@ -220,7 +220,7 @@
                                                     <input type="hidden" name="company" th:value="${List.getFurniture_company()}">
                                                 </form>
                                                 <input class="btn btn-danger" type="submit" value="删除" th:onclick="document.getElementById([[${List.furniture_id+'ite'}]]).submit()">
-                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" th:onclick="check([[${List.furniture_id+'count'}]])">出借</button>
+                                                <button class="btn btn-info" color="azure" data-toggle="modal" data-target="#myModals" th:onclick="check([[${List.furniture_id+'count'}]])">领用</button>
                                             </td>
                                         </tr>
                                         </tbody>
