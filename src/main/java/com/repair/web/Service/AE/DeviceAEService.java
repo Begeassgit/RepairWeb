@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -105,7 +104,6 @@ public class DeviceAEService {
     }
 
     public XSSFWorkbook sheetOutputTemple(){
-        List<Device> list= new ArrayList<>();
         XSSFWorkbook wb=new XSSFWorkbook();
         Sheet sheet=wb.createSheet("Device");
         Row titleRow=sheet.createRow(0);
@@ -117,24 +115,10 @@ public class DeviceAEService {
         titleRow.createCell(5).setCellValue("备注");
         titleRow.createCell(6).setCellValue("所属公司");
         titleRow.createCell(7).setCellValue("使用部门");
-        int cell=1;
-        for(Device device:list){
-            Row row=sheet.createRow(cell);
-            row.createCell(0).setCellValue(device.getDevice_id());
-            row.createCell(1).setCellValue(device.getDevice_name());
-            row.createCell(2).setCellValue(device.getDevice_type());
-            row.createCell(3).setCellValue(device.getDevice_brand());
-            row.createCell(4).setCellValue(device.getDevice_time());
-            row.createCell(5).setCellValue(device.getDevice_info());
-            row.createCell(6).setCellValue(device.getDevice_company());
-            row.createCell(7).setCellValue(device.getDevice_department());
-            cell++;
-        }
         return wb;
     }
 
     public XSSFWorkbook sheetOutputItemTemple(){
-        List<Items> list= new ArrayList<>();
         XSSFWorkbook wb=new XSSFWorkbook();
         Sheet sheet=wb.createSheet("Item");
         Row titleRow=sheet.createRow(0);
@@ -146,19 +130,7 @@ public class DeviceAEService {
         titleRow.createCell(5).setCellValue("备注");
         titleRow.createCell(6).setCellValue("所属公司");
         titleRow.createCell(7).setCellValue("使用部门");
-        int cell=1;
-        for(Items items:list){
-            Row row=sheet.createRow(cell);
-            row.createCell(0).setCellValue(items.getItems_id());
-            row.createCell(1).setCellValue(items.getItems_name());
-            row.createCell(2).setCellValue(items.getItems_type());
-            row.createCell(3).setCellValue(items.getItems_brand());
-            row.createCell(4).setCellValue(items.getItems_count());
-            row.createCell(5).setCellValue(items.getItems_info());
-            row.createCell(6).setCellValue(items.getItems_company());
-            row.createCell(7).setCellValue(items.getItems_department());
-            cell++;
-        }
+
         return wb;
     }
 
@@ -171,7 +143,7 @@ public class DeviceAEService {
             for(int i=0;i<sheetNum;i++){
                 XSSFSheet sheet=book.getSheetAt(i);
                 int rows=sheet.getPhysicalNumberOfRows();
-                Device device=null;
+                Device device;
                 for(int j=1;j<rows;j++){
                     device=new Device();
                     XSSFRow xssfRow=sheet.getRow(j);
@@ -202,7 +174,7 @@ public class DeviceAEService {
             for(int i=0;i<sheetNum;i++){
                 XSSFSheet sheet=book.getSheetAt(i);
                 int rows=sheet.getPhysicalNumberOfRows();
-                Items items=null;
+                Items items;
                 for(int j=1;j<rows;j++){
                     items=new Items();
                     XSSFRow xssfRow=sheet.getRow(j);
@@ -224,8 +196,8 @@ public class DeviceAEService {
         return flagItem>=1;
     }
 
-    public boolean borrowUpdate(String department,String device_id){
-        return deviceDao.borrowDevice(department, device_id)>=1;
+    public void borrowUpdate(String department, String device_id){
+        deviceDao.borrowDevice(department, device_id);
     }
 
     public Device getDeviceInfo(String device_id){

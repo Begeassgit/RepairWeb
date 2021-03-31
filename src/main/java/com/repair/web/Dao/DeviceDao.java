@@ -1,13 +1,11 @@
 package com.repair.web.Dao;
 
 import com.repair.web.Entity.Device;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Mapper
 public interface DeviceDao {
     @Select("SELECT * FROM maintenance_db.device_t WHERE (device_id=#{device_id})")
     Device getDeviceInfo(String device_id);
